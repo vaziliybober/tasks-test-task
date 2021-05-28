@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/Sidebar.css";
+
 import logoImg from "../images/logo.png";
 import bookImg from "../images/book.svg";
 import fileImg from "../images/file.svg";
@@ -8,36 +9,62 @@ import cityImg from "../images/city.svg";
 import analyticsImg from "../images/analytics.svg";
 import settingsImg from "../images/settings.svg";
 
-export default function Sidebar() {
+const sections = {
+  knowledgeBase: {
+    img: bookImg,
+    alt: "book",
+    text: "База знаний",
+  },
+  applications: {
+    img: fileImg,
+    alt: "file",
+    text: "Заявки",
+  },
+  employees: {
+    img: peopleImg,
+    alt: "people",
+    text: "Сотрудники",
+  },
+  clients: {
+    img: cityImg,
+    alt: "city",
+    text: "Клиенты",
+  },
+  assets: {
+    img: analyticsImg,
+    alt: "analytics",
+    text: "Активы",
+  },
+  settings: {
+    img: settingsImg,
+    alt: "settings",
+    text: "Настройки",
+  },
+};
+
+export default function Sidebar({ currentSection, setCurrentSection }) {
+  const makeOnClick = (sectionName) => (e) => {
+    setCurrentSection(sectionName);
+  };
+
   return (
     <div className="Sidebar">
       <img className="Sidebar-logo" src={logoImg} alt="logo" />
       <nav>
         <ul>
-          <li>
-            <img src={bookImg} alt="book" />
-            <div>База знаний</div>
-          </li>
-          <li>
-            <img src={fileImg} alt="file" />
-            <div>Заявки</div>
-          </li>
-          <li>
-            <img src={peopleImg} alt="people" />
-            <div>Сотрудники</div>
-          </li>
-          <li>
-            <img src={cityImg} alt="clients" />
-            <div>Клиенты</div>
-          </li>
-          <li>
-            <img src={analyticsImg} alt="analytics" />
-            <div>Активы</div>
-          </li>
-          <li>
-            <img src={settingsImg} alt="settings" />
-            <div>Настройки</div>
-          </li>
+          {Object.entries(sections).map(([sectionName, section]) => {
+            return (
+              <li
+                className={
+                  sectionName === currentSection ? "Sidebar-active" : ""
+                }
+                onClick={makeOnClick(sectionName)}
+              >
+                <img src={section.img} alt={section.alt} />
+                <div>{section.text}</div>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </div>

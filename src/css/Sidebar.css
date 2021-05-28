@@ -27,6 +27,10 @@
   background: #002c49;
 }
 
+.Sidebar-active {
+  background: #002c49;
+}
+
 .Sidebar nav ul img {
   margin-bottom: 0.5rem;
 }
