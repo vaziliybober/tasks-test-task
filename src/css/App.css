@@ -1,0 +1,13 @@
+.App {
+  background: var(--col-bg-100);
+  display: flex;
+  min-height: 100vh;
+}
+
+.App-right {
+  flex-grow: 1;
+}
+
+.Sidebar {
+  flex-shrink: 0;
+}

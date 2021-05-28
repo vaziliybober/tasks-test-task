@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "Roboto";
+  font-weight: 300;
+  src: url("../fonts/Roboto-Light.ttf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 400;
+  src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  font-weight: 300;
+  src: url("../fonts/Ubuntu-Light.ttf");
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  font-weight: 400;
+  src: url("../fonts/Ubuntu-Regular.ttf");
+}
+
+:root {
+  --col-bg-100: #fff;
+  --col-bg-200: #d1e0ed;
+  --col-bg-300: #ecf3f7;
+  --col-bg-500: #1a4876;
+  --col-bg-700: #002137;
+
+  --col-text-primary: #060606;
+  --col-text-secondary: #9f9ea7;
+  --col-text-table: #525460;
+  --col-text-table-titles: #404147;
+  --col-text-contrast: #fff;
+
+  --font-main: "Roboto";
+  --font-alt: "Ubuntu";
+}
+
+html {
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  font-weight: lighter;
+  font-size: 1.6rem;
+}
+
+.btn {
+  border: none;
+}
+
+.btn:hover {
+  cursor: pointer;
+  filter: brightness(120%);
+}

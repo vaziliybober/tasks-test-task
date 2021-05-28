@@ -1,0 +1,32 @@
+.Sidebar {
+  width: 9.5rem;
+  background: var(--col-bg-700);
+}
+
+.Sidebar-logo {
+  margin: 1.6rem auto 2.3rem auto;
+}
+
+.Sidebar nav ul {
+  list-style: none;
+  color: var(--col-text-contrast);
+  font-size: 1.2rem;
+}
+
+.Sidebar nav ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.Sidebar nav ul li:hover {
+  cursor: pointer;
+  background: #002c49;
+}
+
+.Sidebar nav ul img {
+  margin-bottom: 0.5rem;
+}
