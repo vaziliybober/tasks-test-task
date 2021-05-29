@@ -1,26 +1,26 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import useTenantGUID from './useTenantGUID';
+import useTenantguid from './useTenantguid';
 
 const useTasks = () => {
-  const tenantGUID = useTenantGUID();
+  const { data: tenantguid } = useTenantguid();
 
-  const { data, isLoading } = useQuery(
+  const info = useQuery(
     'tasks',
     async () => {
       const {
-        data: { value: tasks },
+        data: { value },
       } = await axios.get('/odata/tasks', {
-        params: { tenantguid: tenantGUID },
+        params: { tenantguid },
       });
-      return tasks;
+      return value;
     },
     {
-      enabled: !!tenantGUID,
+      enabled: !!tenantguid,
     }
   );
 
-  return { tasks: data, isLoading };
+  return info;
 };
 
 export default useTasks;
