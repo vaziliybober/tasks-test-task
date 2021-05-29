@@ -1,12 +1,15 @@
 import React from 'react';
-import '../css/Main.css';
+import Tasks from './Tasks.js';
 
-export default function Main() {
-  return (
-    <div className="Main">
-      <button className="btn" type="button">
-        Создать заявку
-      </button>
-    </div>
-  );
+const sections = {
+  knowledgeBase: <h1>База знаний</h1>,
+  tasks: <Tasks />,
+  employees: <h1>Сотрудники</h1>,
+  clients: <h1>Клиенты</h1>,
+  assets: <h1>Активы</h1>,
+  settings: <h1>Настройки</h1>,
+};
+
+export default function Main({ currentSection }) {
+  return sections[currentSection];
 }

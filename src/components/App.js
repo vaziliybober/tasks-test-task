@@ -4,18 +4,14 @@ import Sidebar from './Sidebar.js';
 import Main from './Main.js';
 import '../css/App.css';
 import useTenantguid from '../hooks/useTenantguid.js';
-import useTasks from '../hooks/useTasks.js';
 
 function App() {
   const [currentSection, setCurrentSection] = React.useState('tasks');
-  const { refetch: refetchTenantguid, isLoading: isLoadingTenantguid } =
-    useTenantguid();
+  const { refetch: refetchTenantguid } = useTenantguid();
 
   useEffect(() => {
     refetchTenantguid();
   }, []);
-
-  const { isLoading, data: tasks } = useTasks();
 
   return (
     <div className="App">
@@ -25,15 +21,7 @@ function App() {
       />
       <div className="App-right">
         <Header />
-        <Main />
-        <div>{currentSection}</div>
-        <div>
-          {isLoadingTenantguid
-            ? 'Loading Tenantguid'
-            : isLoading
-            ? 'Loading tasks'
-            : JSON.stringify(tasks, null, 2)}
-        </div>
+        <Main currentSection={currentSection} />
       </div>
     </div>
   );
