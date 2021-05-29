@@ -3,35 +3,13 @@ import '../css/Tasks.css';
 import usePriorities from '../hooks/usePriorities';
 import useStatuses from '../hooks/useStatuses';
 import useTasks from '../hooks/useTasks.js';
-
-const statusClasses = {
-  Открыта: 'Tasks-status-open',
-  Выполнена: 'Tasks-status-done',
-  'В работе': 'Tasks-status-in-work',
-  Отложена: 'Tasks-status-postponed',
-  'Требует уточнения': 'Tasks-status-unclear',
-};
+import _ from 'lodash';
 
 export default function Tasks() {
   const { isSuccess, data: tasks } = useTasks();
 
   const { data: statuses } = useStatuses();
-  console.log(statuses);
   const { data: priorities } = usePriorities();
-  console.log(priorities);
-
-  const getPriorityRgb = (id) => {
-    if (!priorities) {
-      return;
-    }
-
-    for (const p of priorities) {
-      if (p.id === id) {
-        console.log(p.rgb);
-        return p.rgb;
-      }
-    }
-  };
 
   if (!isSuccess) {
     return 'Loading...';
@@ -62,22 +40,36 @@ export default function Tasks() {
         </thead>
         <tbody>
           {tasks.map((task) => {
+            const priorityRgb = _.find(
+              priorities,
+              (p) => p.id === task.priorityId
+            ).rgb;
+
+            const statusRgb = _.find(
+              statuses,
+              (p) => p.id === task.statusId
+            ).rgb;
+
             return (
               <tr key={task.id}>
                 <td>
                   <div
                     className="Tasks-priority"
-                    style={{ background: getPriorityRgb(task.priorityId) }}
+                    style={{
+                      background: priorityRgb,
+                    }}
                   />
                 </td>
                 <td>{task.id}</td>
                 <td>
-                  <div class="Tasks-name">{task.name}</div>
+                  <div className="Tasks-name">{task.name}</div>
                 </td>
                 <td>
                   <div
                     className="Tasks-status"
-                    style={{ background: task.statusRgb }}
+                    style={{
+                      background: statusRgb,
+                    }}
                   >
                     {task.statusName}
                   </div>
