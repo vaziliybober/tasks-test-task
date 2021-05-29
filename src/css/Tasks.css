@@ -35,14 +35,17 @@
 }
 
 .Tasks tr {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #dae0e7;
 }
 
 .Tasks th:not(:first-child) * {
   font-family: var(--font-alt);
   font-weight: normal;
   color: var(--col-text-table-titles);
-  border-right: 1px solid #ddd;
+}
+
+.Tasks th:not(:first-child, :last-child) * {
+  border-right: 1px solid #dae0e7;
 }
 
 .Tasks thead tr {
