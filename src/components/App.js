@@ -3,11 +3,11 @@ import Header from "./Header.js";
 import Sidebar from "./Sidebar.js";
 import Main from "./Main.js";
 import "../css/App.css";
-import useTenantGUID from "../hooks/useTenantGUID.js";
+import useTasks from "../hooks/useTasks.js";
 
 function App() {
   const [currentSection, setCurrentSection] = React.useState("tasks");
-  const tenantGUID = useTenantGUID();
+  const { isLoading, tasks } = useTasks();
 
   return (
     <div className="App">
@@ -19,7 +19,7 @@ function App() {
         <Header />
         <Main />
         <div>{currentSection}</div>
-        <div>{tenantGUID || "no"}</div>
+        <div>{isLoading ? "Loading" : JSON.stringify(tasks, null, 2)}</div>
       </div>
     </div>
   );
