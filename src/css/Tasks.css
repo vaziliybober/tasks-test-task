@@ -13,13 +13,13 @@
 .Tasks table {
   margin-top: 2.5rem;
   margin-left: 0.3rem;
+  margin-bottom: 10vh;
   border-collapse: collapse;
 }
 
 .Tasks-priority {
   height: 5rem;
   width: 0.5rem;
-  background: black;
 }
 
 .Tasks-name {
@@ -68,4 +68,13 @@
 
 .Tasks th:first-child {
   padding-right: 1.5rem;
+}
+
+.Tasks-status {
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  color: var(--col-text-contrast);
+  display: inline;
+  text-transform: lowercase;
+  padding: 0.3rem 1.6rem;
 }
