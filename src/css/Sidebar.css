@@ -1,6 +1,10 @@
 .Sidebar {
   width: 9.5rem;
   background: var(--col-bg-700);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  align-self: flex-start;
 }
 
 .Sidebar-logo {

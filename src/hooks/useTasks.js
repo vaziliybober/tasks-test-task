@@ -20,7 +20,12 @@ const useTasks = () => {
     }
   );
 
-  return info;
+  return {
+    ...info,
+    data: Array.isArray(info.data)
+      ? [...info.data, ...info.data.map((d) => ({ ...d, id: d.id * 2 }))]
+      : info.data,
+  };
 };
 
 export default useTasks;

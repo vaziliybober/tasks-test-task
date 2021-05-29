@@ -1,0 +1,9 @@
+.NewTask {
+  background: var(--col-bg-300);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
+  flex-grow: 1;
+}

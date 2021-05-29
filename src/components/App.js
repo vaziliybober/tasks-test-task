@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from './Header.js';
 import Sidebar from './Sidebar.js';
 import Main from './Main.js';
@@ -8,12 +8,12 @@ import usePriorities from '../hooks/usePriorities.js';
 import useStatuses from '../hooks/useStatuses.js';
 
 function App() {
-  const [currentSection, setCurrentSection] = React.useState('knowledgeBase');
+  const [currentSection, setCurrentSection] = React.useState('tasks');
   const { refetch: refetchTenantguid } = useTenantguid();
   usePriorities();
   useStatuses();
 
-  useEffect(() => {
+  React.useEffect(() => {
     refetchTenantguid();
   }, []);
 

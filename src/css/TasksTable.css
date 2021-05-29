@@ -1,0 +1,73 @@
+.TasksTable table {
+  margin-top: 2.5rem;
+  margin-left: 0.3rem;
+  border-collapse: collapse;
+}
+
+.TasksTable-priority {
+  height: 5rem;
+  width: 0.5rem;
+}
+
+.TasksTable-name {
+  height: 100%;
+  max-width: 37.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 1.5rem;
+  max-height: 3rem;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.TasksTable tr {
+  border-bottom: 1px solid #dae0e7;
+}
+
+.TasksTable th:not(:first-child) * {
+  font-family: var(--font-alt);
+  font-weight: normal;
+  color: var(--col-text-table-titles);
+}
+
+.TasksTable th:not(:first-child, :last-child) * {
+  border-right: 1px solid #dae0e7;
+}
+
+.TasksTable thead tr {
+  text-align: left;
+}
+
+.TasksTable th {
+  padding-top: 0.3rem;
+  padding-bottom: 0.6rem;
+}
+
+.TasksTable td {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  color: var(--col-text-table);
+}
+
+.TasksTable th:not(:first-child) *,
+.TasksTable td:not(:first-child) {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.TasksTable th:first-child {
+  padding-right: 1.5rem;
+}
+
+.TasksTable-status {
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  display: inline;
+  text-transform: lowercase;
+  padding: 0.3rem 1.6rem;
+}
+
+.TasksTable-id {
+  white-space: nowrap;
+}

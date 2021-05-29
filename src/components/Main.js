@@ -1,5 +1,6 @@
 import React from 'react';
 import Tasks from './Tasks.js';
+import '../css/Main.css';
 
 const sections = {
   knowledgeBase: <h1>База знаний</h1>,
@@ -11,5 +12,5 @@ const sections = {
 };
 
 export default function Main({ currentSection }) {
-  return sections[currentSection];
+  return <div className="Main">{sections[currentSection]}</div>;
 }

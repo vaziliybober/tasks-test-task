@@ -1,3 +1,8 @@
+.Tasks {
+  display: flex;
+  height: 100%;
+}
+
 .Tasks button {
   background: #008cf0;
   color: var(--col-text-contrast);
@@ -6,77 +11,12 @@
   font-family: var(--font-alt);
   font-weight: lighter;
   margin-top: 2.5rem;
-  margin-left: 20%;
+  margin-left: 26rem;
   padding: 1.1rem 3.4rem;
 }
 
-.Tasks table {
-  margin-top: 2.5rem;
-  margin-left: 0.3rem;
-  margin-bottom: 10vh;
-  border-collapse: collapse;
-}
-
-.Tasks-priority {
-  height: 5rem;
-  width: 0.5rem;
-}
-
-.Tasks-name {
-  height: 100%;
-  max-width: 37.5rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  line-height: 1.5rem;
-  max-height: 3rem;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-.Tasks tr {
-  border-bottom: 1px solid #dae0e7;
-}
-
-.Tasks th:not(:first-child) * {
-  font-family: var(--font-alt);
-  font-weight: normal;
-  color: var(--col-text-table-titles);
-}
-
-.Tasks th:not(:first-child, :last-child) * {
-  border-right: 1px solid #dae0e7;
-}
-
-.Tasks thead tr {
-  text-align: left;
-}
-
-.Tasks th {
-  padding-top: 0.3rem;
-  padding-bottom: 0.6rem;
-}
-
-.Tasks td {
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
-  color: var(--col-text-table);
-}
-
-.Tasks th:not(:first-child) *,
-.Tasks td:not(:first-child) {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.Tasks th:first-child {
-  padding-right: 1.5rem;
-}
-
-.Tasks-status {
-  border-radius: 1rem;
-  font-size: 1.2rem;
-  display: inline;
-  text-transform: lowercase;
-  padding: 0.3rem 1.6rem;
+@media screen and (max-width: 900px) {
+  .Tasks button {
+    margin-left: 5rem;
+  }
 }

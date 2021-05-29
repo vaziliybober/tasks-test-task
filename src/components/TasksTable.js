@@ -2,7 +2,24 @@ import React from 'react';
 import '../css/TasksTable.css';
 import _ from 'lodash';
 
-export default function TasksTable({ tasks, priorities, statuses }) {
+const formatId = (id) => {
+  let result = '';
+  const strId = id.toString();
+  for (let i = strId.length - 1; i >= 0; i--) {
+    result = strId[i] + result;
+    if (i % 3 === 0 && i > 0) {
+      result = ' ' + result;
+    }
+  }
+  return result;
+};
+
+export default function TasksTable({
+  tasks,
+  priorities,
+  statuses,
+  shorten = false,
+}) {
   return (
     <div className="TasksTable">
       <table>
@@ -15,12 +32,16 @@ export default function TasksTable({ tasks, priorities, statuses }) {
             <th>
               <div>Название</div>
             </th>
-            <th>
-              <div>Статус</div>
-            </th>
-            <th>
-              <div>Исполнитель</div>
-            </th>
+            {!shorten && (
+              <>
+                <th>
+                  <div>Статус</div>
+                </th>
+                <th>
+                  <div>Исполнитель</div>
+                </th>
+              </>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -39,28 +60,32 @@ export default function TasksTable({ tasks, priorities, statuses }) {
               <tr key={task.id}>
                 <td>
                   <div
-                    className="Tasks-priority"
+                    className="TasksTable-priority"
                     style={{
                       background: priorityRgb,
                     }}
                   />
                 </td>
-                <td>{task.id}</td>
+                <td className="TasksTable-id">{formatId(task.id)}</td>
                 <td>
-                  <div className="Tasks-name">{task.name}</div>
+                  <div className="TasksTable-name">{task.name}</div>
                 </td>
-                <td>
-                  <div
-                    className="Tasks-status"
-                    style={{
-                      background: statusRgb,
-                      color: statusRgb && '#fff',
-                    }}
-                  >
-                    {task.statusName}
-                  </div>
-                </td>
-                <td>{task.executorName}</td>
+                {!shorten && (
+                  <>
+                    <td>
+                      <div
+                        className="TasksTable-status"
+                        style={{
+                          background: statusRgb,
+                          color: statusRgb && '#fff',
+                        }}
+                      >
+                        {task.statusName}
+                      </div>
+                    </td>
+                    <td>{task.executorName}</td>
+                  </>
+                )}
               </tr>
             );
           })}
