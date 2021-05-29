@@ -59,6 +59,7 @@ export default function Sidebar({ currentSection, setCurrentSection }) {
                   sectionName === currentSection ? "Sidebar-active" : ""
                 }
                 onClick={makeOnClick(sectionName)}
+                key={sectionName}
               >
                 <img src={section.img} alt={section.alt} />
                 <div>{section.text}</div>
