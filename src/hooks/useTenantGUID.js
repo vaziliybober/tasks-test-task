@@ -1,12 +1,12 @@
-import React from "react";
-import { useQuery } from "react-query";
-import axios from "axios";
+import React from 'react';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 const useTenantGUID = () => {
   const { data, refetch } = useQuery(
-    "tenantGUID",
+    'tenantGUID',
     async () => {
-      const { data: tenantGUID } = await axios.get("/api/Tenants");
+      const { data: tenantGUID } = await axios.get('/api/Tenants');
       return tenantGUID;
     },
     { enabled: false }
