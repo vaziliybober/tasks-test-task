@@ -76,7 +76,6 @@
 .Tasks-status {
   border-radius: 1rem;
   font-size: 1.2rem;
-  color: var(--col-text-contrast);
   display: inline;
   text-transform: lowercase;
   padding: 0.3rem 1.6rem;
