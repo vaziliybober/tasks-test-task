@@ -6,7 +6,7 @@ import "../css/App.css";
 import useTenantGUID from "../hooks/useTenantGUID.js";
 
 function App() {
-  const [currentSection, setCurrentSection] = React.useState("applications");
+  const [currentSection, setCurrentSection] = React.useState("tasks");
   const tenantGUID = useTenantGUID();
 
   return (

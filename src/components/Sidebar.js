@@ -15,7 +15,7 @@ const sections = {
     alt: "book",
     text: "База знаний",
   },
-  applications: {
+  tasks: {
     img: fileImg,
     alt: "file",
     text: "Заявки",
