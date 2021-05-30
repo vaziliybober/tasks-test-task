@@ -16,7 +16,7 @@ function App() {
 
   React.useEffect(() => {
     refetchTenantguid();
-  }, []);
+  }, [refetchTenantguid]);
 
   return (
     <div className="App">

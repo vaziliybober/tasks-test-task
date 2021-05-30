@@ -1,14 +1,14 @@
 import React from 'react';
 import './styles.css';
 
-import closeImg from './images/close.svg';
+import closeImg from '../images/close.svg';
 
 import axios from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 
 import useTenantguid from '../../../hooks/useTenantguid';
 
-export default function NewTask({ onClose }) {
+export default function NewTaskForm({ onClose, onSuccess }) {
   const nameRef = React.useRef();
   const descriptionRef = React.useRef();
 
@@ -17,12 +17,18 @@ export default function NewTask({ onClose }) {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(
-    (data) => axios.post(`/api/${tenantguid}/Tasks`, data),
+    async (taskData) => {
+      const { data } = await axios.post(`/api/${tenantguid}/Tasks`, taskData);
+      return data;
+    },
     {
-      onSuccess: () => {
+      onSuccess: (taskId) => {
         nameRef.current.value = '';
         descriptionRef.current.value = '';
         queryClient.invalidateQueries('tasks');
+        if (onSuccess) {
+          onSuccess(taskId);
+        }
       },
     }
   );
@@ -38,26 +44,36 @@ export default function NewTask({ onClose }) {
   };
 
   return (
-    <div className="NewTask">
-      <div className="NewTask-head">
+    <div className="TaskForm NewTaskForm">
+      <div className="TaskForm-header">
         <h1>Новая заявка</h1>
         <img src={closeImg} alt="close" onClick={onClose} />
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="NewTask-field">
-          <div className="NewTask-field-name">Название</div>
-          <textarea className="NewTask-textarea-name" ref={nameRef}></textarea>
-        </div>
-        <div className="NewTask-field">
-          <div className="NewTask-field-name">Описание</div>
+        <div className="NewTaskForm-field">
+          <div className="TaskForm-fieldname">Название</div>
           <textarea
-            className="NewTask-textarea-description"
+            className="NewTaskForm-textarea-name"
+            ref={nameRef}
+          ></textarea>
+        </div>
+        <div className="NewTaskForm-field">
+          <div className="TaskForm-fieldname">Описание</div>
+          <textarea
+            className="NewTaskForm-textarea-description"
             ref={descriptionRef}
           ></textarea>
         </div>
-        <button className="btn" type="submit" disabled>
+        <button
+          className="btn TaskForm-button"
+          type="submit"
+          disabled={mutation.isLoading}
+        >
           Сохранить
         </button>
+        {mutation.isError && (
+          <div>Не удалось создать заявку. Пожалуйста, попробуйте снова.</div>
+        )}
       </form>
     </div>
   );

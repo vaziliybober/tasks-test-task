@@ -1,3 +1,5 @@
+/* General */
+
 .btn {
   border: none;
 }
@@ -5,6 +7,60 @@
 .btn:hover {
   filter: brightness(120%);
 }
+
+.btn:disabled {
+  filter: brightness(70%);
+}
+
+/* For NewTaskForm and EditTaskForm */
+.TaskForm {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  overflow-y: auto;
+  height: 100vh;
+  flex-grow: 1;
+}
+
+.TaskForm-header {
+  background: #1a4876;
+  color: #fff;
+  padding: 0 2.9rem 0 3.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6rem;
+}
+
+.TaskForm-header img {
+  width: 1.6rem;
+  height: 1.6rem;
+  cursor: pointer;
+}
+
+.TaskForm-header h1 {
+  font-weight: normal;
+  font-size: 1.8rem;
+}
+
+.TaskForm-button {
+  background: #008cf0;
+  color: #fff;
+  border-radius: 2rem;
+  font-size: 1.4rem;
+  font-family: var(--font-main);
+  font-weight: lighter;
+  padding: 0.9rem 4.1rem;
+}
+
+.TaskForm-fieldname {
+  font-size: 1.4rem;
+  font-family: 'Ubuntu';
+  margin-bottom: 1.4rem;
+  color: #9f9ea7;
+}
+
+/* For Tasks */
 
 .Tasks-message {
   margin: 2rem 4rem;
@@ -15,7 +71,7 @@
   display: flex;
 }
 
-.Tasks button {
+.Tasks-button {
   margin-top: 2.5rem;
   margin-left: 26rem;
   background: #008cf0;
@@ -27,14 +83,12 @@
   padding: 1.1rem 3.4rem;
 }
 
+.Tasks-body-left {
+}
+
 .Tasks-body-right {
   flex-grow: 1;
   background: #ecf3f7;
   border-left: 1px solid #d7dce0;
-}
-
-@media screen and (max-width: 900px) {
-  .Tasks button {
-    margin-left: 5rem;
-  }
+  width: 30%;
 }

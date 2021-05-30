@@ -1,15 +1,15 @@
-.TasksTable table {
+.TableOfTasks table {
   margin-top: 2.5rem;
   margin-left: 0.3rem;
   border-collapse: collapse;
 }
 
-.TasksTable-priority {
+.TableOfTasks-priority {
   height: 5rem;
   width: 0.5rem;
 }
 
-.TasksTable-name {
+.TableOfTasks-name {
   height: 100%;
   max-width: 37.5rem;
   overflow: hidden;
@@ -21,46 +21,46 @@
   -webkit-box-orient: vertical;
 }
 
-.TasksTable tr {
+.TableOfTasks tr {
   border-bottom: 1px solid #dae0e7;
 }
 
-.TasksTable th:not(:first-child) * {
+.TableOfTasks th:not(:first-child) * {
   font-family: 'Ubuntu';
   font-weight: normal;
   color: #404147;
 }
 
-.TasksTable th:not(:first-child, :last-child) * {
+.TableOfTasks th:not(:first-child, :last-child) * {
   border-right: 1px solid #dae0e7;
 }
 
-.TasksTable thead tr {
+.TableOfTasks thead tr {
   text-align: left;
 }
 
-.TasksTable th {
+.TableOfTasks th {
   padding-top: 0.3rem;
   padding-bottom: 0.6rem;
 }
 
-.TasksTable td {
+.TableOfTasks td {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   color: #525460;
 }
 
-.TasksTable th:not(:first-child) *,
-.TasksTable td:not(:first-child) {
+.TableOfTasks th:not(:first-child) *,
+.TableOfTasks td:not(:first-child) {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 
-.TasksTable th:first-child {
+.TableOfTasks th:first-child {
   padding-right: 1.5rem;
 }
 
-.TasksTable-status {
+.TableOfTasks-status {
   border-radius: 1rem;
   font-size: 1.2rem;
   display: inline;
@@ -68,6 +68,11 @@
   padding: 0.3rem 1.6rem;
 }
 
-.TasksTable-id {
+.TableOfTasks-id {
   white-space: nowrap;
+}
+
+.TableOfTasks tbody tr:hover {
+  background: #999;
+  cursor: pointer;
 }
