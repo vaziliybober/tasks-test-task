@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from './Header.js';
-import Sidebar from './Sidebar.js';
-import Main from './Main.js';
-import '../css/App.css';
-import useTenantguid from '../hooks/useTenantguid.js';
-import usePriorities from '../hooks/usePriorities.js';
-import useStatuses from '../hooks/useStatuses.js';
+import './styles.css';
+
+import Sidebar from './Sidebar';
+import Main from './Main';
+
+import useTenantguid from '../../hooks/useTenantguid';
+import usePriorities from '../../hooks/usePriorities';
+import useStatuses from '../../hooks/useStatuses';
 
 function App() {
   const [currentSection, setCurrentSection] = React.useState('tasks');
@@ -24,7 +25,6 @@ function App() {
         setCurrentSection={setCurrentSection}
       />
       <div className="App-right">
-        <Header />
         <Main currentSection={currentSection} />
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
-import Tasks from './Tasks.js';
-import '../css/Main.css';
+import './styles.css';
+
+import Tasks from '../../Tasks';
 
 export default function Main({ currentSection }) {
   const [tasksMode, setTasksMode] = React.useState('view');

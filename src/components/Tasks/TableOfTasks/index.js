@@ -1,5 +1,6 @@
 import React from 'react';
-import '../css/TasksTable.css';
+import './styles.css';
+
 import _ from 'lodash';
 
 const formatId = (id) => {

@@ -1,13 +1,13 @@
 import React from 'react';
-import '../css/Sidebar.css';
+import './styles.css';
 
-import logoImg from '../images/logo.png';
-import bookImg from '../images/book.svg';
-import fileImg from '../images/file.svg';
-import peopleImg from '../images/people.svg';
-import cityImg from '../images/city.svg';
-import analyticsImg from '../images/analytics.svg';
-import settingsImg from '../images/settings.svg';
+import logoImg from './images/logo.png';
+import bookImg from './images/book.svg';
+import fileImg from './images/file.svg';
+import peopleImg from './images/people.svg';
+import cityImg from './images/city.svg';
+import analyticsImg from './images/analytics.svg';
+import settingsImg from './images/settings.svg';
 
 const sections = {
   knowledgeBase: {
