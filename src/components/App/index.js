@@ -24,9 +24,7 @@ function App() {
         currentSection={currentSection}
         setCurrentSection={setCurrentSection}
       />
-      <div className="App-right">
-        <Main currentSection={currentSection} />
-      </div>
+      <Main currentSection={currentSection} />
     </div>
   );
 }

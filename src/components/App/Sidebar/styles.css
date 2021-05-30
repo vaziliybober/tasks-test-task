@@ -1,6 +1,6 @@
 .Sidebar {
+  background: var(--bg-sidebar);
   width: 9.5rem;
-  background: var(--col-bg-700);
   position: sticky;
   top: 0;
   height: 100vh;
@@ -13,7 +13,7 @@
 
 .Sidebar nav ul {
   list-style: none;
-  color: var(--col-text-contrast);
+  color: #fff;
   font-size: 1.2rem;
 }
 

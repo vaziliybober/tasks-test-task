@@ -1,6 +1,6 @@
 .Header {
   display: flex;
-  background: var(--col-bg-200);
+  background: #d1e0ed;
   padding: 1.5rem 1.7rem 1rem;
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2);
 }

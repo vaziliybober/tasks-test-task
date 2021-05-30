@@ -26,9 +26,9 @@
 }
 
 .TasksTable th:not(:first-child) * {
-  font-family: var(--font-alt);
+  font-family: 'Ubuntu';
   font-weight: normal;
-  color: var(--col-text-table-titles);
+  color: #404147;
 }
 
 .TasksTable th:not(:first-child, :last-child) * {
@@ -47,7 +47,7 @@
 .TasksTable td {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
-  color: var(--col-text-table);
+  color: #525460;
 }
 
 .TasksTable th:not(:first-child) *,

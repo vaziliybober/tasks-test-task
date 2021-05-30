@@ -1,13 +1,22 @@
+.btn {
+  border: none;
+}
+
+.btn:hover {
+  cursor: pointer;
+  filter: brightness(120%);
+}
+
 .Tasks-wrapper {
   display: flex;
 }
 
 .Tasks button {
   background: #008cf0;
-  color: var(--col-text-contrast);
+  color: #fff;
   border-radius: 2rem;
   font-size: 1.6rem;
-  font-family: var(--font-alt);
+  font-family: 'Ubuntu';
   font-weight: lighter;
   margin-top: 2.5rem;
   margin-left: 26rem;
@@ -16,7 +25,7 @@
 
 .Tasks-right-wrapper {
   flex-grow: 1;
-  background: var(--col-bg-300);
+  background: #ecf3f7;
   border-left: 1px solid #d7dce0;
 }
 

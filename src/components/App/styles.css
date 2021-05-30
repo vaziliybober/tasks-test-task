@@ -1,13 +1,9 @@
 .App {
-  background: var(--col-bg-100);
+  --bg-sidebar: #002137;
+
+  background: #fff;
   display: flex;
   min-height: 100vh;
-}
-
-.App-right {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
 }
 
 .Sidebar {

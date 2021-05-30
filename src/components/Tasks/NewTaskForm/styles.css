@@ -1,5 +1,4 @@
 .NewTask {
-  background: var(--col-bg-300);
   position: sticky;
   top: 0;
   align-self: flex-start;
@@ -9,7 +8,7 @@
 }
 
 .NewTask-head {
-  background: var(--col-bg-500);
+  background: #1a4876;
   padding: 2rem 2.9rem 2rem 3.7rem;
   margin-bottom: 6rem;
   display: flex;
@@ -18,7 +17,7 @@
 }
 
 .NewTask h1 {
-  color: var(--col-text-contrast);
+  color: #fff;
   font-weight: normal;
   font-size: 1.8rem;
 }
@@ -37,7 +36,7 @@
 
 .NewTask-field-name {
   font-size: 1.4rem;
-  font-family: var(--font-alt);
+  font-family: 'Ubuntu';
   margin-bottom: 1.4rem;
   color: #9f9ea7;
 }
@@ -60,7 +59,7 @@
 
 .NewTask button {
   background: #008cf0;
-  color: var(--col-text-contrast);
+  color: #fff;
   border-radius: 2rem;
   font-size: 1.4rem;
   font-family: var(--font-main);
