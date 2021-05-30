@@ -6,12 +6,10 @@ import usePriorities from '../hooks/usePriorities.js';
 import useStatuses from '../hooks/useStatuses.js';
 import useTasks from '../hooks/useTasks.js';
 
-export default function Tasks() {
+export default function Tasks({ mode, setMode }) {
   const { isSuccess, data: tasks } = useTasks();
   const { data: statuses } = useStatuses();
   const { data: priorities } = usePriorities();
-
-  const [mode, setMode] = React.useState('view');
 
   if (!isSuccess) {
     return 'Loading...';
@@ -30,7 +28,11 @@ export default function Tasks() {
           statuses={statuses}
         />
       </div>
-      {mode === 'add' && <NewTask onClose={() => setMode('view')} />}
+      {mode === 'add' && (
+        <div class="Tasks-right-wrapper">
+          <NewTask onClose={() => setMode('view')} />
+        </div>
+      )}
     </div>
   );
 }

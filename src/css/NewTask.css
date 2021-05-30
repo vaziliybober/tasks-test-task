@@ -3,7 +3,69 @@
   position: sticky;
   top: 0;
   align-self: flex-start;
-  height: 100vh;
   overflow-y: auto;
+  height: 100vh;
   flex-grow: 1;
+}
+
+.NewTask-head {
+  background: var(--col-bg-500);
+  padding: 2rem 2.9rem 2rem 3.7rem;
+  margin-bottom: 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.NewTask h1 {
+  color: var(--col-text-contrast);
+  font-weight: normal;
+  font-size: 1.8rem;
+}
+
+.NewTask img {
+  width: 1.6rem;
+  height: 1.6rem;
+  cursor: pointer;
+}
+
+.NewTask-field {
+  margin-left: 3.7rem;
+  margin-right: 2rem;
+  margin-bottom: 2.2rem;
+}
+
+.NewTask-field-name {
+  font-size: 1.4rem;
+  font-family: var(--font-alt);
+  margin-bottom: 1.4rem;
+  color: #9f9ea7;
+}
+
+.NewTask-field textarea {
+  width: 100%;
+  max-width: 62.5rem;
+  resize: none;
+  border-radius: 0.5rem;
+  border: 1px solid #e8e8e8;
+}
+
+.NewTask-textarea-name {
+  min-height: 8.8rem;
+}
+
+.NewTask-textarea-description {
+  min-height: 13.4rem;
+}
+
+.NewTask button {
+  background: #008cf0;
+  color: var(--col-text-contrast);
+  border-radius: 2rem;
+  font-size: 1.4rem;
+  font-family: var(--font-main);
+  font-weight: lighter;
+  margin-left: 3.7rem;
+  margin-top: 5.2rem;
+  padding: 0.9rem 4.1rem;
 }

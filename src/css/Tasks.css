@@ -15,6 +15,11 @@
   padding: 1.1rem 3.4rem;
 }
 
+.Tasks-right-wrapper {
+  flex-grow: 1;
+  background: var(--col-bg-300);
+}
+
 @media screen and (max-width: 900px) {
   .Tasks button {
     margin-left: 5rem;

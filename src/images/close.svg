@@ -1,0 +1,14 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+	<title>заявка создание</title>
+	<defs>
+		<image  width="16" height="16" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAAXNSR0IB2cksfwAAAB5QTFRF////////////////////////////////////////FdjMUgAAAAp0Uk5TwpAAl/94dnlWVSDiP4wAAABJSURBVHicY2BUAgMBBpMgEK3qzKDmCmKEJDEohQCFVF2VGEAEiMMAJIvUgWwgQ9WjJQjMUJriqYTKgEvBFMO1wwyEWwG3FOYMAPFuGLUuh6lkAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<g id="заявка создание">
+		<g id="шапка">
+			<use id="close" href="#img1" x="0" y="0" />
+		</g>
+	</g>
+</svg>
