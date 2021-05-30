@@ -1,11 +1,17 @@
 .App {
-  --bg-sidebar: #002137;
-
   background: #fff;
   display: flex;
   min-height: 100vh;
 }
 
-.Sidebar {
+.App .Sidebar {
   flex-shrink: 0;
+  position: fixed;
+  height: 100%;
+  width: 9.5rem;
+}
+
+.App .Main {
+  flex-grow: 1;
+  margin-left: 9.5rem;
 }

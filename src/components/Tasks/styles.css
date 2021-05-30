@@ -3,27 +3,31 @@
 }
 
 .btn:hover {
-  cursor: pointer;
   filter: brightness(120%);
 }
 
-.Tasks-wrapper {
+.Tasks-message {
+  margin: 2rem 4rem;
+  font-size: 1.8rem;
+}
+
+.Tasks-body {
   display: flex;
 }
 
 .Tasks button {
+  margin-top: 2.5rem;
+  margin-left: 26rem;
   background: #008cf0;
   color: #fff;
   border-radius: 2rem;
   font-size: 1.6rem;
   font-family: 'Ubuntu';
   font-weight: lighter;
-  margin-top: 2.5rem;
-  margin-left: 26rem;
   padding: 1.1rem 3.4rem;
 }
 
-.Tasks-right-wrapper {
+.Tasks-body-right {
   flex-grow: 1;
   background: #ecf3f7;
   border-left: 1px solid #d7dce0;

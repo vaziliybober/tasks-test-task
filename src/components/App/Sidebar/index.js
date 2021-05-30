@@ -43,7 +43,7 @@ const sections = {
 };
 
 export default function Sidebar({ currentSection, setCurrentSection }) {
-  const makeOnClick = (sectionName) => (e) => {
+  const makeClickHandler = (sectionName) => (e) => {
     setCurrentSection(sectionName);
   };
 
@@ -58,7 +58,7 @@ export default function Sidebar({ currentSection, setCurrentSection }) {
                 className={
                   sectionName === currentSection ? 'Sidebar-active' : ''
                 }
-                onClick={makeOnClick(sectionName)}
+                onClick={makeClickHandler(sectionName)}
                 key={sectionName}
               >
                 <img src={section.img} alt={section.alt} />
