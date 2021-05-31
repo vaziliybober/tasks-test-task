@@ -11,7 +11,22 @@ export default function Main({ currentSection }) {
   useStatusesQuery();
 
   const sections = {
-    knowledgeBase: <h1>База знаний</h1>,
+    knowledgeBase: (
+      <>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+        <h1>База знаний</h1>
+      </>
+    ),
     tasks: <Tasks />,
     employees: <h1>Сотрудники</h1>,
     clients: <h1>Клиенты</h1>,

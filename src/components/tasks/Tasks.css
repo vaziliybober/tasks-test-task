@@ -14,11 +14,6 @@
 
 /* For NewTaskForm and EditTaskForm */
 .TaskForm {
-  position: sticky;
-  top: 0;
-  align-self: flex-start;
-  overflow-y: auto;
-  height: 100vh;
   flex-grow: 1;
 }
 
@@ -62,6 +57,26 @@
 
 /* For Tasks */
 
+.Header {
+  height: 6.5rem;
+}
+
+.Tasks-body-left {
+  height: calc(100vh - 6.5rem);
+  overflow-y: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.Tasks-body-right {
+  height: calc(100vh - 6.5rem);
+  overflow-y: auto;
+  flex-grow: 100;
+  flex-shrink: 5;
+  background: #ecf3f7;
+  border-left: 1px solid #d7dce0;
+}
+
 .Tasks-message {
   margin: 2rem 4rem;
   font-size: 1.8rem;
@@ -81,14 +96,4 @@
   font-family: 'Ubuntu';
   font-weight: lighter;
   padding: 1.1rem 3.4rem;
-}
-
-.Tasks-body-left {
-}
-
-.Tasks-body-right {
-  flex-grow: 1;
-  background: #ecf3f7;
-  border-left: 1px solid #d7dce0;
-  width: 30%;
 }

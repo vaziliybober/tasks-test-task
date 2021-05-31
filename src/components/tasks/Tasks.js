@@ -58,7 +58,10 @@ export default function Tasks() {
 
   return (
     <div className="Tasks">
-      <Header />
+      <div className="Tasks-header">
+        <Header />
+      </div>
+
       <div className="Tasks-body">
         <div className="Tasks-body-left">
           <button
