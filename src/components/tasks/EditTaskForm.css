@@ -1,6 +1,3 @@
-.EditTaskForm {
-}
-
 .EditTaskForm-header-text {
   display: flex;
   align-items: center;
@@ -24,13 +21,12 @@
   -webkit-box-orient: vertical;
 }
 
-.EditTaskForm-wrapper {
+.EditTaskForm .TaskForm-body {
   display: flex;
 }
 
 .EditTaskForm-left {
   padding-top: 2.8rem;
-  margin-left: 3.9rem;
   padding-right: 1rem;
   flex-grow: 1;
   border-right: 1px solid #d7dce0;
@@ -74,7 +70,6 @@
 
 .EditTaskForm-right {
   margin-left: 2.8rem;
-  margin-right: 4.5rem;
   margin-top: 2.8rem;
 }
 
@@ -113,6 +108,7 @@
 .EditTaskForm-due-date {
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .EditTaskForm-due-date img {
@@ -121,9 +117,16 @@
   margin-right: 0.7rem;
 }
 
+.EditTaskForm-tags {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
 .EditTaskForm-tag {
   color: #9da1aa;
   padding: 4px 11px 3px 10px;
+  align-self: flex-start;
   background: #fff;
   border-radius: 1rem;
   font-size: 1.2rem;

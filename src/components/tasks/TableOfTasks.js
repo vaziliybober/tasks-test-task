@@ -5,13 +5,23 @@ import _ from 'lodash';
 
 import { formatId } from '../../shared';
 
-export default function TableOfTasks({
-  tasks,
-  priorities,
-  statuses,
-  shorten = false,
-  onClick = () => {},
-}) {
+import useTasksQuery from '../../hooks/useTasksQuery';
+import usePrioritiesQuery from '../../hooks/usePrioritiesQuery';
+import useStatusesQuery from '../../hooks/useStatusesQuery';
+
+export default function TableOfTasks({ shorten = false, onClick = () => {} }) {
+  const { data: tasks, status } = useTasksQuery();
+  const { data: statuses } = useStatusesQuery();
+  const { data: priorities } = usePrioritiesQuery();
+
+  if (status === 'loading') {
+    return 'Загружаем заявки...';
+  }
+
+  if (status === 'error') {
+    return 'Не удалось загрузить заявки. Попробуйте обновить страницу.';
+  }
+
   const shortHeadersJSX = (
     <>
       <th>

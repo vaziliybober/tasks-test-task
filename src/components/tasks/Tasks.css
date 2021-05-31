@@ -1,30 +1,79 @@
-/* General */
+/* For Tasks */
 
-.btn {
-  border: none;
+.Tasks {
+  --header-height: 6.5rem;
+  --task-form-header-height: 6rem;
 }
 
-.btn:hover {
-  filter: brightness(120%);
+.Tasks .Header {
+  height: var(--header-height);
 }
 
-.btn:disabled {
-  filter: brightness(70%);
+.Tasks-body {
+  display: flex;
+}
+
+.Tasks-body-left {
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.Tasks-body-right {
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  flex-grow: 100;
+  flex-shrink: 5;
+  border-left: 1px solid #d7dce0;
+}
+
+.Tasks-button {
+  margin-top: 2.5rem;
+  margin-left: 26rem;
+
+  font-family: 'Ubuntu';
+  font-size: 1.6rem;
+  padding: 1.1rem 3.4rem;
+}
+
+@media screen and (max-width: 900px) {
+  .Tasks-button {
+    margin-left: 5rem;
+  }
+}
+
+/* For TableOfTasks */
+
+.TableOfTasks {
+  margin-top: 2.5rem;
+  margin-left: 0.3rem;
 }
 
 /* For NewTaskForm and EditTaskForm */
+
 .TaskForm {
-  flex-grow: 1;
+  background: #ecf3f7;
+}
+
+.TaskForm-body {
+  min-height: calc(
+    100vh - var(--header-height) - var(--task-form-header-height)
+  );
+  margin-left: 3.7rem;
+  margin-right: 4.5rem;
 }
 
 .TaskForm-header {
-  background: #1a4876;
-  color: #fff;
-  padding: 0 2.9rem 0 3.7rem;
+  height: var(--task-form-header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 6rem;
+
+  background: #1a4876;
+  color: #fff;
+  padding-left: 3.7rem;
+  padding-right: 2.9rem;
 }
 
 .TaskForm-header img {
@@ -39,61 +88,32 @@
 }
 
 .TaskForm-button {
-  background: #008cf0;
-  color: #fff;
-  border-radius: 2rem;
   font-size: 1.4rem;
-  font-family: var(--font-main);
-  font-weight: lighter;
+  font-family: 'Roboto';
   padding: 0.9rem 4.1rem;
 }
 
 .TaskForm-fieldname {
+  margin-bottom: 1.4rem;
   font-size: 1.4rem;
   font-family: 'Ubuntu';
-  margin-bottom: 1.4rem;
   color: #9f9ea7;
 }
 
-/* For Tasks */
+/* General */
 
-.Header {
-  height: 6.5rem;
-}
-
-.Tasks-body-left {
-  height: calc(100vh - 6.5rem);
-  overflow-y: auto;
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-
-.Tasks-body-right {
-  height: calc(100vh - 6.5rem);
-  overflow-y: auto;
-  flex-grow: 100;
-  flex-shrink: 5;
-  background: #ecf3f7;
-  border-left: 1px solid #d7dce0;
-}
-
-.Tasks-message {
-  margin: 2rem 4rem;
-  font-size: 1.8rem;
-}
-
-.Tasks-body {
-  display: flex;
-}
-
-.Tasks-button {
-  margin-top: 2.5rem;
-  margin-left: 26rem;
+.button {
+  border: none;
+  border-radius: 2rem;
   background: #008cf0;
   color: #fff;
-  border-radius: 2rem;
-  font-size: 1.6rem;
-  font-family: 'Ubuntu';
   font-weight: lighter;
-  padding: 1.1rem 3.4rem;
+}
+
+.button:hover {
+  filter: brightness(120%);
+}
+
+.button:disabled {
+  filter: brightness(70%);
 }

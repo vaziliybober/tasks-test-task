@@ -26,8 +26,16 @@ const formatDate = (dateString) => {
   });
 };
 
-export default function EditTaskForm({ taskId, onClose, onSuccess }) {
-  const { data: tenantguid } = useTenantguid();
+export default function EditTaskForm({
+  taskId,
+  onClose = () => {},
+  onSuccess = () => {},
+}) {
+  if (!taskId) {
+    throw new Error('taskId is a required prop in EditTaskForm');
+  }
+
+  const tenantguid = useTenantguid();
   const { data: task, status } = useTaskQuery(taskId);
   const { data: statuses } = useStatusesQuery();
   const { data: users } = useUsersQuery();
@@ -46,8 +54,8 @@ export default function EditTaskForm({ taskId, onClose, onSuccess }) {
     {
       onSuccess: () => {
         commentTextareaRef.current.value = '';
-        queryClient.invalidateQueries('tasks');
-        queryClient.invalidateQueries(['task', taskId]);
+        queryClient.invalidateQueries(['tasks', tenantguid]);
+        queryClient.invalidateQueries(['task', tenantguid, taskId]);
         if (onSuccess) {
           onSuccess();
         }
@@ -95,7 +103,7 @@ export default function EditTaskForm({ taskId, onClose, onSuccess }) {
         </div>
         <img src={closeImg} alt="close" onClick={onClose} />
       </div>
-      <div className="EditTaskForm-wrapper">
+      <div className="TaskForm-body">
         <div className="EditTaskForm-left">
           <div className="TaskForm-fieldname">Описание</div>
           <div
@@ -143,7 +151,7 @@ export default function EditTaskForm({ taskId, onClose, onSuccess }) {
             <div className="TaskForm-fieldname">Добавление коментариев</div>
             <textarea ref={commentTextareaRef} />
             <button
-              className="btn TaskForm-button"
+              className="button TaskForm-button"
               type="submit"
               disabled={!statuses || !users || mutation.isLoading}
             >

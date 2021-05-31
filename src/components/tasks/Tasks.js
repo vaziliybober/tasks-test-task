@@ -6,84 +6,51 @@ import TableOfTasks from './TableOfTasks';
 import NewTaskForm from './NewTaskForm';
 import EditTaskForm from './EditTaskForm';
 
-import usePrioritiesQuery from '../../hooks/usePrioritiesQuery';
-import useStatusesQuery from '../../hooks/useStatusesQuery';
-import useTasksQuery from '../../hooks/useTasksQuery';
-
 export default function Tasks() {
-  const { data: tasks, status } = useTasksQuery();
-  const { data: statuses } = useStatusesQuery();
-  const { data: priorities } = usePrioritiesQuery();
-
   const [mode, setMode] = React.useState('view');
   const [editTaskId, setEditTaskId] = React.useState();
 
-  if (status === 'loading') {
-    return <div className="Tasks-message">Загружаем данные...</div>;
-  }
+  const openTaskEditor = (taskId) => {
+    setMode('edit');
+    setEditTaskId(taskId);
+  };
 
-  if (status === 'error') {
-    return (
-      <div className="Tasks-message">
-        Не удалось загрузить данные. Попробуйте обновить страницу.
-      </div>
-    );
-  }
+  const openTaskCreator = () => {
+    setMode('create');
+  };
 
-  const newTaskFormJSX = (
-    <div
-      className="Tasks-body-right"
-      style={{ display: mode !== 'add' && 'none' }}
-    >
-      <NewTaskForm
-        onClose={() => setMode('view')}
-        onSuccess={(taskId) => {
-          setMode('edit');
-          setEditTaskId(taskId);
-        }}
-      />
-    </div>
-  );
-
-  const editTaskFormJSX = (
-    <div
-      className="Tasks-body-right"
-      style={{ display: mode !== 'edit' && 'none' }}
-    >
-      {editTaskId && (
-        <EditTaskForm taskId={editTaskId} onClose={() => setMode('view')} />
-      )}
-    </div>
-  );
+  const expandTasksViewer = () => {
+    setMode('view');
+  };
 
   return (
     <div className="Tasks">
-      <div className="Tasks-header">
-        <Header />
-      </div>
-
+      <Header />
       <div className="Tasks-body">
         <div className="Tasks-body-left">
           <button
-            className="btn Tasks-button"
+            className="button Tasks-button"
             type="button"
-            onClick={() => setMode('add')}
+            onClick={openTaskCreator}
           >
             Создать заявку
           </button>
-          <TableOfTasks
-            tasks={tasks}
-            priorities={priorities}
-            statuses={statuses}
-            shorten={mode !== 'view'}
-            onClick={(taskId) => {
-              setMode('edit');
-              setEditTaskId(taskId);
-            }}
-          />
+          <TableOfTasks shorten={mode !== 'view'} onClick={openTaskEditor} />
         </div>
-        {newTaskFormJSX}
-        {editTaskFormJSX}
+        <div
+          className="Tasks-body-right"
+          style={{ display: mode !== 'create' && 'none' }}
+        >
+          <NewTaskForm onClose={expandTasksViewer} onSuccess={openTaskEditor} />
+        </div>
+        <div
+          className="Tasks-body-right"
+          style={{ display: mode !== 'edit' && 'none' }}
+        >
+          {editTaskId && (
+            <EditTaskForm taskId={editTaskId} onClose={expandTasksViewer} />
+          )}
+        </div>
       </div>
     </div>
   );

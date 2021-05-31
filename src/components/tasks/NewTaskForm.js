@@ -12,7 +12,7 @@ export default function NewTaskForm({ onClose, onSuccess }) {
   const nameRef = React.useRef();
   const descriptionRef = React.useRef();
 
-  const { data: tenantguid } = useTenantguid();
+  const tenantguid = useTenantguid();
 
   const queryClient = useQueryClient();
 
@@ -25,7 +25,7 @@ export default function NewTaskForm({ onClose, onSuccess }) {
       onSuccess: (taskId) => {
         nameRef.current.value = '';
         descriptionRef.current.value = '';
-        queryClient.invalidateQueries('tasks');
+        queryClient.invalidateQueries(['tasks', tenantguid]);
         if (onSuccess) {
           onSuccess(taskId);
         }
@@ -49,32 +49,34 @@ export default function NewTaskForm({ onClose, onSuccess }) {
         <h1>Новая заявка</h1>
         <img src={closeImg} alt="close" onClick={onClose} />
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className="NewTaskForm-field">
-          <div className="TaskForm-fieldname">Название</div>
-          <textarea
-            className="NewTaskForm-textarea-name"
-            ref={nameRef}
-          ></textarea>
-        </div>
-        <div className="NewTaskForm-field">
-          <div className="TaskForm-fieldname">Описание</div>
-          <textarea
-            className="NewTaskForm-textarea-description"
-            ref={descriptionRef}
-          ></textarea>
-        </div>
-        <button
-          className="btn TaskForm-button"
-          type="submit"
-          disabled={mutation.isLoading}
-        >
-          Сохранить
-        </button>
-        {mutation.isError && (
-          <div>Не удалось создать заявку. Пожалуйста, попробуйте снова.</div>
-        )}
-      </form>
+      <div className="TaskForm-body">
+        <form onSubmit={handleSubmit}>
+          <div className="NewTaskForm-field">
+            <div className="TaskForm-fieldname">Название</div>
+            <textarea
+              className="NewTaskForm-textarea-name"
+              ref={nameRef}
+            ></textarea>
+          </div>
+          <div className="NewTaskForm-field">
+            <div className="TaskForm-fieldname">Описание</div>
+            <textarea
+              className="NewTaskForm-textarea-description"
+              ref={descriptionRef}
+            ></textarea>
+          </div>
+          <button
+            className="button TaskForm-button"
+            type="submit"
+            disabled={mutation.isLoading}
+          >
+            Сохранить
+          </button>
+          {mutation.isError && (
+            <div>Не удалось создать заявку. Пожалуйста, попробуйте снова.</div>
+          )}
+        </form>
+      </div>
     </div>
   );
 }

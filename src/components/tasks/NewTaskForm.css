@@ -1,16 +1,16 @@
-.NewTaskForm .TaskForm-header {
-  margin-bottom: 5.5rem;
+.NewTaskForm-field:first-child {
+  padding-top: 5.5rem;
 }
 
 .NewTaskForm-field {
-  margin-left: 3.7rem;
-  margin-right: 2rem;
   margin-bottom: 2.2rem;
 }
 
-.NewTaskForm-field textarea {
+.NewTaskForm textarea {
   width: 100%;
   max-width: 62.5rem;
+  min-width: 25rem;
+
   resize: none;
   border-radius: 0.5rem;
   border: 1px solid #e8e8e8;
@@ -25,6 +25,6 @@
 }
 
 .NewTaskForm .TaskForm-button {
-  margin-left: 3.7rem;
   margin-top: 5.2rem;
+  margin-bottom: 3rem;
 }
