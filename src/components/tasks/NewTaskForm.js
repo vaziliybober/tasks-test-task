@@ -1,12 +1,12 @@
 import React from 'react';
-import './styles.css';
+import './NewTaskForm.css';
 
-import closeImg from '../images/close.svg';
+import closeImg from '../../images/close.svg';
 
 import axios from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 
-import useTenantguid from '../../../hooks/useTenantguid';
+import useTenantguid from '../../hooks/useTenantguid';
 
 export default function NewTaskForm({ onClose, onSuccess }) {
   const nameRef = React.useRef();

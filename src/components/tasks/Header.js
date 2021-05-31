@@ -1,7 +1,7 @@
 import React from 'react';
-import './styles.css';
+import './Header.css';
 
-import searchImg from './images/search.svg';
+import searchImg from '../../images/search.svg';
 
 export default function Header() {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
-import './styles.css';
+import './Main.css';
 
-import Tasks from '../../Tasks';
+import Tasks from '../tasks/Tasks';
 
 export default function Main({ currentSection }) {
   const sections = {

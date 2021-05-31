@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import './Comments.css';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);

@@ -5,7 +5,7 @@ import './styles.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import axios from 'axios';
 
-import App from './components/App';
+import App from './components/toplevel/App';
 
 const queryClient = new QueryClient();
 

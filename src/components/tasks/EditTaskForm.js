@@ -1,21 +1,21 @@
 import React from 'react';
-import './styles.css';
+import './EditTaskForm.css';
 
-import closeImg from '../images/close.svg';
-import calendarImg from './images/calendar.svg';
+import closeImg from '../../images/close.svg';
+import calendarImg from '../../images/calendar.svg';
 
 import axios from 'axios';
 import _ from 'lodash';
 import { useMutation, useQueryClient } from 'react-query';
 
-import { formatId } from '../helper';
+import { formatId } from '../../shared';
 
-import Comments from '../Comments';
+import Comments from './Comments';
 
-import useTenantguid from '../../../hooks/useTenantguid';
-import useTask from '../../../hooks/useTask';
-import useStatuses from '../../../hooks/useStatuses';
-import useUsers from '../../../hooks/useUsers';
+import useTenantguid from '../../hooks/useTenantguid';
+import useTask from '../../hooks/useTask';
+import useStatuses from '../../hooks/useStatuses';
+import useUsers from '../../hooks/useUsers';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);

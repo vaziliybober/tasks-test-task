@@ -1,9 +1,9 @@
 import React from 'react';
-import './styles.css';
+import './TableOfTasks.css';
 
 import _ from 'lodash';
 
-import { formatId } from '../helper';
+import { formatId } from '../../shared';
 
 export default function TableOfTasks({
   tasks,

@@ -1,8 +1,8 @@
 import React from 'react';
-import './styles.css';
+import './Tasks.css';
 
 import Header from './Header';
-import TasksTable from './TableOfTasks';
+import TableOfTasks from './TableOfTasks';
 import NewTaskForm from './NewTaskForm';
 import EditTaskForm from './EditTaskForm';
 
@@ -66,7 +66,7 @@ export default function Tasks() {
           >
             Создать заявку
           </button>
-          <TasksTable
+          <TableOfTasks
             tasks={tasks}
             priorities={priorities}
             statuses={statuses}
