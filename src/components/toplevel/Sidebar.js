@@ -9,41 +9,20 @@ import cityImg from '../../images/city.svg';
 import analyticsImg from '../../images/analytics.svg';
 import settingsImg from '../../images/settings.svg';
 
-const sections = {
-  knowledgeBase: {
-    img: bookImg,
-    alt: 'book',
-    text: 'База знаний',
-  },
-  tasks: {
-    img: fileImg,
-    alt: 'file',
-    text: 'Заявки',
-  },
-  employees: {
-    img: peopleImg,
-    alt: 'people',
-    text: 'Сотрудники',
-  },
-  clients: {
-    img: cityImg,
-    alt: 'city',
-    text: 'Клиенты',
-  },
-  assets: {
-    img: analyticsImg,
-    alt: 'analytics',
-    text: 'Активы',
-  },
-  settings: {
-    img: settingsImg,
-    alt: 'settings',
-    text: 'Настройки',
-  },
-};
+const sections = [
+  { name: 'knowledgeBase', img: bookImg, alt: 'book', text: 'База знаний' },
+  { name: 'tasks', img: fileImg, alt: 'file', text: 'Заявки' },
+  { name: 'employees', img: peopleImg, alt: 'people', text: 'Сотрудники' },
+  { name: 'clients', img: cityImg, alt: 'city', text: 'Клиенты' },
+  { name: 'assets', img: analyticsImg, alt: 'analytics', text: 'Активы' },
+  { name: 'settings', img: settingsImg, alt: 'settings', text: 'Настройки' },
+];
 
-export default function Sidebar({ currentSection, setCurrentSection }) {
-  const makeClickHandler = (sectionName) => (e) => {
+export default function Sidebar({
+  currentSection,
+  setCurrentSection = () => {},
+}) {
+  const makeClickHandler = (sectionName) => () => {
     setCurrentSection(sectionName);
   };
 
@@ -52,14 +31,14 @@ export default function Sidebar({ currentSection, setCurrentSection }) {
       <img className="Sidebar-logo" src={logoImg} alt="logo" />
       <nav>
         <ul>
-          {Object.entries(sections).map(([sectionName, section]) => {
+          {sections.map((section) => {
             return (
               <li
                 className={
-                  sectionName === currentSection ? 'Sidebar-active' : ''
+                  section.name === currentSection ? 'Sidebar-active' : ''
                 }
-                onClick={makeClickHandler(sectionName)}
-                key={sectionName}
+                onClick={makeClickHandler(section.name)}
+                key={section.name}
               >
                 <img src={section.img} alt={section.alt} />
                 <div>{section.text}</div>

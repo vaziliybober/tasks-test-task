@@ -6,13 +6,13 @@
   margin: 1.6rem auto 2.3rem auto;
 }
 
-.Sidebar nav ul {
+.Sidebar ul {
   list-style: none;
   color: #fff;
   font-size: 1.2rem;
 }
 
-.Sidebar nav ul li {
+.Sidebar li {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +21,7 @@
   padding-bottom: 1rem;
 }
 
-.Sidebar nav ul li:hover {
+.Sidebar li:hover {
   cursor: pointer;
   background: #002c49;
 }
@@ -30,6 +30,6 @@
   background: #002c49;
 }
 
-.Sidebar nav ul img {
+.Sidebar nav img {
   margin-bottom: 0.5rem;
 }
