@@ -3,7 +3,13 @@ import './Main.css';
 
 import Tasks from '../tasks/Tasks';
 
+import usePrioritiesQuery from '../../hooks/usePrioritiesQuery';
+import useStatusesQuery from '../../hooks/useStatusesQuery';
+
 export default function Main({ currentSection }) {
+  usePrioritiesQuery();
+  useStatusesQuery();
+
   const sections = {
     knowledgeBase: <h1>База знаний</h1>,
     tasks: <Tasks />,

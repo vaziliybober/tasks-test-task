@@ -6,14 +6,14 @@ import TableOfTasks from './TableOfTasks';
 import NewTaskForm from './NewTaskForm';
 import EditTaskForm from './EditTaskForm';
 
-import usePriorities from '../../hooks/usePriorities';
-import useStatuses from '../../hooks/useStatuses';
-import useTasks from '../../hooks/useTasks';
+import usePrioritiesQuery from '../../hooks/usePrioritiesQuery';
+import useStatusesQuery from '../../hooks/useStatusesQuery';
+import useTasksQuery from '../../hooks/useTasksQuery';
 
 export default function Tasks() {
-  const { data: tasks, status } = useTasks();
-  const { data: statuses } = useStatuses();
-  const { data: priorities } = usePriorities();
+  const { data: tasks, status } = useTasksQuery();
+  const { data: statuses } = useStatusesQuery();
+  const { data: priorities } = usePrioritiesQuery();
 
   const [mode, setMode] = React.useState('view');
   const [editTaskId, setEditTaskId] = React.useState();
@@ -50,7 +50,9 @@ export default function Tasks() {
       className="Tasks-body-right"
       style={{ display: mode !== 'edit' && 'none' }}
     >
-      <EditTaskForm taskId={editTaskId} onClose={() => setMode('view')} />
+      {editTaskId && (
+        <EditTaskForm taskId={editTaskId} onClose={() => setMode('view')} />
+      )}
     </div>
   );
 

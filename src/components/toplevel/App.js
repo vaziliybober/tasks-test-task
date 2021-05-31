@@ -4,28 +4,38 @@ import './App.css';
 import Sidebar from './Sidebar';
 import Main from './Main';
 
-import useTenantguid from '../../hooks/useTenantguid';
-import usePriorities from '../../hooks/usePriorities';
-import useStatuses from '../../hooks/useStatuses';
+import useTenantguidQuery from '../../hooks/useTenantguidQuery';
+
+import { TenantguidProvider } from '../../contexts/TenantguidContext';
 
 function App() {
-  const [currentSection, setCurrentSection] = React.useState('tasks');
-  const { refetch: refetchTenantguid } = useTenantguid();
-  usePriorities();
-  useStatuses();
+  const [currentSection, setCurrentSection] = React.useState('knowledgeBase');
+
+  const tenantguidQuery = useTenantguidQuery();
 
   React.useEffect(() => {
-    refetchTenantguid();
-  }, [refetchTenantguid]);
+    if (tenantguidQuery.isSuccess) {
+    }
+  }, [tenantguidQuery.isSuccess]);
+
+  if (tenantguidQuery.isLoading) {
+    return 'Loading...';
+  }
+
+  if (tenantguidQuery.isError) {
+    return 'Error!';
+  }
 
   return (
-    <div className="App">
-      <Sidebar
-        currentSection={currentSection}
-        setCurrentSection={setCurrentSection}
-      />
-      <Main currentSection={currentSection} />
-    </div>
+    <TenantguidProvider value={tenantguidQuery.data}>
+      <div className="App">
+        <Sidebar
+          currentSection={currentSection}
+          setCurrentSection={setCurrentSection}
+        />
+        <Main currentSection={currentSection} />
+      </div>
+    </TenantguidProvider>
   );
 }
 

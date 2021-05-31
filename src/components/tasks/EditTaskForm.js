@@ -13,9 +13,9 @@ import { formatId } from '../../shared';
 import Comments from './Comments';
 
 import useTenantguid from '../../hooks/useTenantguid';
-import useTask from '../../hooks/useTask';
-import useStatuses from '../../hooks/useStatuses';
-import useUsers from '../../hooks/useUsers';
+import useTaskQuery from '../../hooks/useTaskQuery';
+import useStatusesQuery from '../../hooks/useStatusesQuery';
+import useUsersQuery from '../../hooks/useUsersQuery';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -28,9 +28,9 @@ const formatDate = (dateString) => {
 
 export default function EditTaskForm({ taskId, onClose, onSuccess }) {
   const { data: tenantguid } = useTenantguid();
-  const { data: task, status } = useTask(taskId);
-  const { data: statuses } = useStatuses();
-  const { data: users } = useUsers();
+  const { data: task, status } = useTaskQuery(taskId);
+  const { data: statuses } = useStatusesQuery();
+  const { data: users } = useUsersQuery();
 
   const statusSelectRef = React.useRef();
   const executorSelectRef = React.useRef();
