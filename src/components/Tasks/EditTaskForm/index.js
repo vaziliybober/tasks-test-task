@@ -145,7 +145,7 @@ export default function EditTaskForm({ taskId, onClose, onSuccess }) {
             <button
               className="btn TaskForm-button"
               type="submit"
-              disabled={!statuses || !users}
+              disabled={!statuses || !users || mutation.isLoading}
             >
               Сохранить
             </button>
