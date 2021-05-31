@@ -68,6 +68,13 @@ export default function EditTaskForm({ taskId, onClose, onSuccess }) {
     mutation.mutate(taskData);
   };
 
+  React.useEffect(() => {
+    if (task) {
+      statusSelectRef.current.value = task.statusId;
+      executorSelectRef.current.value = task.executorId;
+    }
+  }, [taskId]);
+
   if (status === 'loading') {
     return 'Loading task...';
   }
@@ -78,7 +85,6 @@ export default function EditTaskForm({ taskId, onClose, onSuccess }) {
 
   const comments = task.lifetimeItems.filter((item) => item.comment);
   const statusRgb = _.find(statuses, (s) => s.id === task.statusId)?.rgb;
-  console.log(comments);
 
   return (
     <div className="TaskForm EditTaskForm">
@@ -100,7 +106,11 @@ export default function EditTaskForm({ taskId, onClose, onSuccess }) {
             <div className="EditTaskForm-selects">
               <div>
                 <div className="TaskForm-fieldname">Статус</div>
-                <select ref={statusSelectRef}>
+                <select
+                  ref={statusSelectRef}
+                  defaultValue={task.statusId}
+                  key={task.statusId}
+                >
                   {statuses &&
                     statuses.map((status, i) => {
                       return (
@@ -113,7 +123,11 @@ export default function EditTaskForm({ taskId, onClose, onSuccess }) {
               </div>
               <div>
                 <div className="TaskForm-fieldname">Исполнитель</div>
-                <select ref={executorSelectRef}>
+                <select
+                  ref={executorSelectRef}
+                  defaultValue={task.executorId}
+                  key={task.executorId}
+                >
                   {users &&
                     users.map((user, i) => {
                       return (

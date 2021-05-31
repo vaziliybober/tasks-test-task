@@ -37,7 +37,7 @@ export default function NewTaskForm({ onClose, onSuccess }) {
     e.preventDefault();
     const body = {
       name: nameRef.current.value,
-      descriptionRef: descriptionRef.current.value,
+      description: descriptionRef.current.value,
     };
 
     mutation.mutate(body);
