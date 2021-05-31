@@ -16,6 +16,7 @@
 .Tasks-body-left {
   height: calc(100vh - var(--header-height));
   overflow-y: auto;
+  overflow-x: visible;
   flex-grow: 1;
   flex-shrink: 1;
 }
@@ -23,6 +24,7 @@
 .Tasks-body-right {
   height: calc(100vh - var(--header-height));
   overflow-y: auto;
+  overflow-x: visible;
   flex-grow: 100;
   flex-shrink: 5;
   border-left: 1px solid #d7dce0;
@@ -66,6 +68,7 @@
 
 .TaskForm-header {
   height: var(--task-form-header-height);
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

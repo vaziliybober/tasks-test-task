@@ -15,11 +15,13 @@ export default function TableOfTasks({ shorten = false, onClick = () => {} }) {
   const { data: priorities } = usePrioritiesQuery();
 
   if (status === 'loading') {
-    return 'Загружаем заявки...';
+    return <div>Загружаем заявки...</div>;
   }
 
   if (status === 'error') {
-    return 'Не удалось загрузить заявки. Попробуйте обновить страницу.';
+    return (
+      <div>Не удалось загрузить заявки. Попробуйте обновить страницу.</div>
+    );
   }
 
   const shortHeadersJSX = (

@@ -8,39 +8,46 @@ import { useMutation, useQueryClient } from 'react-query';
 
 import useTenantguid from '../../hooks/useTenantguid';
 
-export default function NewTaskForm({ onClose, onSuccess }) {
-  const nameRef = React.useRef();
-  const descriptionRef = React.useRef();
-
+const useCreateTaskMutation = () => {
   const tenantguid = useTenantguid();
-
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(
+  return useMutation(
     async (taskData) => {
       const { data } = await axios.post(`/api/${tenantguid}/Tasks`, taskData);
       return data;
     },
     {
-      onSuccess: (taskId) => {
-        nameRef.current.value = '';
-        descriptionRef.current.value = '';
+      onSuccess: () => {
         queryClient.invalidateQueries(['tasks', tenantguid]);
-        if (onSuccess) {
-          onSuccess(taskId);
-        }
       },
     }
   );
+};
+
+export default function NewTaskForm({
+  onClose = () => {},
+  onSuccess = () => {},
+}) {
+  const nameRef = React.useRef();
+  const descriptionRef = React.useRef();
+
+  const createTaskMutation = useCreateTaskMutation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = {
+    const taskData = {
       name: nameRef.current.value,
       description: descriptionRef.current.value,
     };
 
-    mutation.mutate(body);
+    createTaskMutation.mutate(taskData, {
+      onSuccess: (taskId) => {
+        nameRef.current.value = '';
+        descriptionRef.current.value = '';
+        onSuccess(taskId);
+      },
+    });
   };
 
   return (
@@ -68,12 +75,14 @@ export default function NewTaskForm({ onClose, onSuccess }) {
           <button
             className="button TaskForm-button"
             type="submit"
-            disabled={mutation.isLoading}
+            disabled={createTaskMutation.isLoading}
           >
             Сохранить
           </button>
-          {mutation.isError && (
-            <div>Не удалось создать заявку. Пожалуйста, попробуйте снова.</div>
+          {createTaskMutation.isError && (
+            <div className="NewTaskForm-error">
+              Не удалось создать заявку. Пожалуйста, попробуйте снова.
+            </div>
           )}
         </form>
       </div>

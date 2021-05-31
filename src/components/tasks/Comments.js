@@ -1,6 +1,8 @@
 import React from 'react';
 import './Comments.css';
 
+import DOMPurify from 'dompurify';
+
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   return date.toLocaleString('ru', {
@@ -23,7 +25,12 @@ export default function Comments({ comments }) {
               <div className="Comments-date">{`${formatDate(
                 c.createdAt
               )} прокомментировал`}</div>
-              <div className="Comments-comment-itself">{c.comment}</div>
+              <div
+                className="Comments-comment-itself"
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(c.comment),
+                }}
+              ></div>
             </div>
           </div>
         );

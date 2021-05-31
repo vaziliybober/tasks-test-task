@@ -6,6 +6,7 @@ import calendarImg from '../../images/calendar.svg';
 
 import axios from 'axios';
 import _ from 'lodash';
+import DOMPurify from 'dompurify';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { formatId } from '../../shared';
@@ -17,51 +18,41 @@ import useTaskQuery from '../../hooks/useTaskQuery';
 import useStatusesQuery from '../../hooks/useStatusesQuery';
 import useUsersQuery from '../../hooks/useUsersQuery';
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleString('ru', {
-    month: 'numeric',
-    day: 'numeric',
-    year: 'numeric',
-  });
-};
-
-export default function EditTaskForm({
-  taskId,
-  onClose = () => {},
-  onSuccess = () => {},
-}) {
-  if (!taskId) {
-    throw new Error('taskId is a required prop in EditTaskForm');
-  }
-
-  const tenantguid = useTenantguid();
-  const { data: task, status } = useTaskQuery(taskId);
-  const { data: statuses } = useStatusesQuery();
-  const { data: users } = useUsersQuery();
-
-  const statusSelectRef = React.useRef();
-  const executorSelectRef = React.useRef();
-  const commentTextareaRef = React.useRef();
-
+const useEditTaskMutation = (taskId) => {
   const queryClient = useQueryClient();
+  const tenantguid = useTenantguid();
 
-  const mutation = useMutation(
+  return useMutation(
     async (taskData) => {
       const { data } = await axios.put(`/api/${tenantguid}/Tasks`, taskData);
       return data;
     },
     {
       onSuccess: () => {
-        commentTextareaRef.current.value = '';
         queryClient.invalidateQueries(['tasks', tenantguid]);
         queryClient.invalidateQueries(['task', tenantguid, taskId]);
-        if (onSuccess) {
-          onSuccess();
-        }
       },
     }
   );
+};
+
+function Form({ taskId }) {
+  const { data: task } = useTaskQuery(taskId);
+  const { data: statuses } = useStatusesQuery();
+  const { data: users } = useUsersQuery();
+
+  const editTaskMutation = useEditTaskMutation(taskId);
+
+  const statusSelectRef = React.useRef();
+  const executorSelectRef = React.useRef();
+  const commentTextareaRef = React.useRef();
+
+  React.useEffect(() => {
+    if (task) {
+      statusSelectRef.current.value = task.statusId;
+      executorSelectRef.current.value = task.executorId;
+    }
+  }, [task]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,17 +62,86 @@ export default function EditTaskForm({
       statusId: statusSelectRef.current.value,
       executorId: executorSelectRef.current.value,
     };
-    console.log(taskData);
 
-    mutation.mutate(taskData);
+    editTaskMutation.mutate(taskData, {
+      onSuccess: () => {
+        commentTextareaRef.current.value = '';
+      },
+    });
   };
 
-  React.useEffect(() => {
-    if (task) {
-      statusSelectRef.current.value = task.statusId;
-      executorSelectRef.current.value = task.executorId;
-    }
-  }, [taskId]);
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="EditTaskForm-selects">
+        <div>
+          <div className="TaskForm-fieldname">Статус</div>
+          <select
+            ref={statusSelectRef}
+            defaultValue={task.statusId}
+            key={task.statusId}
+          >
+            {statuses &&
+              statuses.map((status, i) => {
+                return (
+                  <option value={status.id} key={status.id}>
+                    {status.name}
+                  </option>
+                );
+              })}
+          </select>
+        </div>
+        <div>
+          <div className="TaskForm-fieldname">Исполнитель</div>
+          <select
+            ref={executorSelectRef}
+            defaultValue={task.executorId}
+            key={task.executorId}
+          >
+            {users &&
+              users.map((user, i) => {
+                return (
+                  <option value={user.id} key={user.id}>
+                    {user.name}
+                  </option>
+                );
+              })}
+          </select>
+        </div>
+      </div>
+      <div className="TaskForm-fieldname">Добавление коментариев</div>
+      <textarea ref={commentTextareaRef} />
+      <button
+        className="button TaskForm-button"
+        type="submit"
+        disabled={!statuses || !users || editTaskMutation.isLoading}
+      >
+        Сохранить
+      </button>
+      {editTaskMutation.isError && (
+        <div className="EditTaskForm-error">
+          Не удалось создать заявку. Пожалуйста, попробуйте снова.
+        </div>
+      )}
+    </form>
+  );
+}
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleString('ru', {
+    month: 'numeric',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
+
+export default function EditTaskForm({ taskId, onClose = () => {} }) {
+  if (!taskId) {
+    throw new Error('taskId is a required prop in EditTaskForm');
+  }
+
+  const { data: task, status } = useTaskQuery(taskId);
+  const { data: statuses } = useStatusesQuery();
 
   if (status === 'loading') {
     return 'Loading task...';
@@ -108,56 +168,11 @@ export default function EditTaskForm({
           <div className="TaskForm-fieldname">Описание</div>
           <div
             className="EditTaskForm-description"
-            dangerouslySetInnerHTML={{ __html: task.description }}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(task.description),
+            }}
           ></div>
-          <form onSubmit={handleSubmit}>
-            <div className="EditTaskForm-selects">
-              <div>
-                <div className="TaskForm-fieldname">Статус</div>
-                <select
-                  ref={statusSelectRef}
-                  defaultValue={task.statusId}
-                  key={task.statusId}
-                >
-                  {statuses &&
-                    statuses.map((status, i) => {
-                      return (
-                        <option value={status.id} key={status.id}>
-                          {status.name}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-              <div>
-                <div className="TaskForm-fieldname">Исполнитель</div>
-                <select
-                  ref={executorSelectRef}
-                  defaultValue={task.executorId}
-                  key={task.executorId}
-                >
-                  {users &&
-                    users.map((user, i) => {
-                      return (
-                        <option value={user.id} key={user.id}>
-                          {user.name}
-                        </option>
-                      );
-                    })}
-                </select>
-              </div>
-            </div>
-
-            <div className="TaskForm-fieldname">Добавление коментариев</div>
-            <textarea ref={commentTextareaRef} />
-            <button
-              className="button TaskForm-button"
-              type="submit"
-              disabled={!statuses || !users || mutation.isLoading}
-            >
-              Сохранить
-            </button>
-          </form>
+          <Form taskId={taskId} />
           <Comments comments={comments} />
         </div>
         <div className="EditTaskForm-right">
