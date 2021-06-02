@@ -12,6 +12,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { formatId } from '../../shared';
 
 import Button from '../shared/Button';
+import Select from '../shared/Select';
 import Comments from './Comments';
 
 import useTenantguid from '../../hooks/useTenantguid';
@@ -76,10 +77,11 @@ function Form({ taskId }) {
       <div className="EditTaskForm-selects">
         <div>
           <div className="TaskForm-fieldname">Статус</div>
-          <select
+          <Select
             ref={statusSelectRef}
             defaultValue={task.statusId}
             key={task.statusId}
+            css={{ marginBottom: 25, marginRight: 50 }}
           >
             {statuses &&
               statuses.map((status, i) => {
@@ -89,14 +91,15 @@ function Form({ taskId }) {
                   </option>
                 );
               })}
-          </select>
+          </Select>
         </div>
         <div>
           <div className="TaskForm-fieldname">Исполнитель</div>
-          <select
+          <Select
             ref={executorSelectRef}
             defaultValue={task.executorId}
             key={task.executorId}
+            css={{ marginBottom: 25, marginRight: 50 }}
           >
             {users &&
               users.map((user, i) => {
@@ -106,7 +109,7 @@ function Form({ taskId }) {
                   </option>
                 );
               })}
-          </select>
+          </Select>
         </div>
       </div>
       <div className="TaskForm-fieldname">Добавление коментариев</div>
