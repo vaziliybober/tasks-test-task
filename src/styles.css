@@ -43,11 +43,6 @@ li {
   padding: 0;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
-
 body {
   font-family: 'Roboto';
   font-weight: lighter;

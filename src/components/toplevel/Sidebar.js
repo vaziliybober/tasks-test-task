@@ -1,5 +1,5 @@
 import React from 'react';
-import './Sidebar.css';
+import styled from '@emotion/styled';
 
 import logoImg from '../../images/logo.png';
 import bookImg from '../../images/book.svg';
@@ -21,32 +21,65 @@ const sections = [
 export default function Sidebar({
   currentSection,
   setCurrentSection = () => {},
+  className,
 }) {
-  const makeClickHandler = (sectionName) => () => {
-    setCurrentSection(sectionName);
-  };
-
   return (
-    <div className="Sidebar">
-      <img className="Sidebar-logo" src={logoImg} alt="logo" />
+    <Container className={className} css={{ padding: '16px 0' }}>
+      <LogoImage src={logoImg} alt="logo" />
       <nav>
-        <ul>
-          {sections.map((section) => {
-            return (
-              <li
-                className={
-                  section.name === currentSection ? 'Sidebar-active' : ''
-                }
-                onClick={makeClickHandler(section.name)}
-                key={section.name}
-              >
-                <img src={section.img} alt={section.alt} />
-                <div>{section.text}</div>
-              </li>
-            );
-          })}
-        </ul>
+        <Ul>
+          {sections.map((section) => (
+            <NavItem
+              key={section.name}
+              section={section}
+              active={section.name === currentSection}
+              onClick={() => setCurrentSection(section.name)}
+            />
+          ))}
+        </Ul>
       </nav>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  background: #002137;
+`;
+
+const LogoImage = styled.img`
+  display: block;
+  width: 52;
+  height: 44;
+  margin: 0 auto 23px auto;
+`;
+
+const Ul = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  list-style: none;
+  font-size: 12px;
+  color: #fff;
+`;
+
+function NavItem({ section, active, onClick }) {
+  return (
+    <Li active={active} onClick={onClick}>
+      <img src={section.img} alt={section.alt} />
+      <div>{section.text}</div>
+    </Li>
+  );
+}
+
+const Li = styled.li(({ active }) => ({
+  padding: '10px 0',
+  width: '100%',
+  textAlign: 'center',
+  background: active ? '#002c49' : 'inherit',
+
+  '&:hover': {
+    background: '#002c49',
+    cursor: 'pointer',
+  },
+}));

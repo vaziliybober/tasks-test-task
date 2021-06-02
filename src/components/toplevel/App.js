@@ -1,14 +1,14 @@
 import React from 'react';
-import './App.css';
+import styled from '@emotion/styled';
 
-import Sidebar from './Sidebar';
-import Main from './Main';
+import UnstyledSidebar from './Sidebar';
+import UnstyledMain from './Main';
 
 import useTenantguidQuery from '../../hooks/useTenantguidQuery';
 
 import { TenantguidProvider } from '../../contexts/TenantguidContext';
 
-function App() {
+export default function App() {
   const [currentSection, setCurrentSection] = React.useState('tasks');
 
   const tenantguidQuery = useTenantguidQuery();
@@ -23,15 +23,23 @@ function App() {
 
   return (
     <TenantguidProvider value={tenantguidQuery.data}>
-      <div className="App">
+      <>
         <Sidebar
           currentSection={currentSection}
           setCurrentSection={setCurrentSection}
         />
         <Main currentSection={currentSection} />
-      </div>
+      </>
     </TenantguidProvider>
   );
 }
 
-export default App;
+const Sidebar = styled(UnstyledSidebar)`
+  position: fixed;
+  height: 100%;
+  width: 95px;
+`;
+
+const Main = styled(UnstyledMain)`
+  margin-left: 95px;
+`;

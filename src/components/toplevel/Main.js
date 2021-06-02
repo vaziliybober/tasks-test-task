@@ -1,12 +1,11 @@
 import React from 'react';
-import './Main.css';
 
 import Tasks from '../tasks/Tasks';
 
 import usePrioritiesQuery from '../../hooks/usePrioritiesQuery';
 import useStatusesQuery from '../../hooks/useStatusesQuery';
 
-export default function Main({ currentSection }) {
+export default function Main({ currentSection, className }) {
   usePrioritiesQuery();
   useStatusesQuery();
 
@@ -19,5 +18,5 @@ export default function Main({ currentSection }) {
     settings: <h1>Настройки</h1>,
   };
 
-  return <div className="Main">{sections[currentSection]}</div>;
+  return <div className={className}>{sections[currentSection]}</div>;
 }
