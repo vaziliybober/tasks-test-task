@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const initialState = {
   isSuccess: false,
@@ -33,18 +33,25 @@ const reducer = (state, action) => {
 };
 
 export default function useFetch(fetchFn) {
+  const fetchFnRef = React.useRef();
+  fetchFnRef.current = fetchFn;
+
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     dispatch({ type: 'queried' });
 
-    try {
-      const data = await fetchFn();
-      dispatch({ type: 'succeeded', payload: data });
-    } catch (e) {
-      dispatch({ type: 'failed', payload: e });
-    }
-  }, []);
+    const fetch = async () => {
+      try {
+        const data = await fetchFnRef.current();
+        dispatch({ type: 'succeeded', payload: data });
+      } catch (e) {
+        dispatch({ type: 'failed', payload: e });
+      }
+    };
+
+    fetch();
+  }, [fetchFnRef]);
 
   return state;
 }

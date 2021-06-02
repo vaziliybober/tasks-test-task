@@ -2,6 +2,7 @@ import React from 'react';
 import './Tasks.css';
 
 import Header from './Header';
+import Button from '../shared/Button';
 import TableOfTasks from './TableOfTasks';
 import NewTaskForm from './NewTaskForm';
 import EditTaskForm from './EditTaskForm';
@@ -28,13 +29,15 @@ export default function Tasks() {
       <Header />
       <div className="Tasks-body">
         <div className="Tasks-body-left">
-          <button
-            className="button Tasks-button"
-            type="button"
+          <Button
             onClick={openTaskCreator}
+            css={{
+              margin: '25px 0 0 260px',
+              '@media (max-width: 800px)': { marginLeft: '130px' },
+            }}
           >
             Создать заявку
-          </button>
+          </Button>
           <TableOfTasks shorten={mode !== 'view'} onClick={openTaskEditor} />
         </div>
         <div

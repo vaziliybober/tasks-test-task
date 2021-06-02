@@ -11,6 +11,7 @@ import { useMutation, useQueryClient } from 'react-query';
 
 import { formatId } from '../../shared';
 
+import Button from '../shared/Button';
 import Comments from './Comments';
 
 import useTenantguid from '../../hooks/useTenantguid';
@@ -110,13 +111,13 @@ function Form({ taskId }) {
       </div>
       <div className="TaskForm-fieldname">Добавление коментариев</div>
       <textarea ref={commentTextareaRef} />
-      <button
-        className="button TaskForm-button"
+      <Button
         type="submit"
         disabled={!statuses || !users || editTaskMutation.isLoading}
+        css={{ marginBottom: 44, fontSize: 14 }}
       >
         Сохранить
-      </button>
+      </Button>
       {editTaskMutation.isError && (
         <div className="EditTaskForm-error">
           Не удалось создать заявку. Пожалуйста, попробуйте снова.
