@@ -6,6 +6,8 @@ import closeImg from '../../images/close.svg';
 import axios from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
 
+import Button from '../shared/Button';
+
 import useTenantguid from '../../hooks/useTenantguid';
 
 const useCreateTaskMutation = () => {
@@ -72,13 +74,12 @@ export default function NewTaskForm({
               ref={descriptionRef}
             ></textarea>
           </div>
-          <button
-            className="button TaskForm-button"
-            type="submit"
+          <Button
             disabled={createTaskMutation.isLoading}
+            css={{ marginTop: 52, marginBottom: 30, fontSize: 14 }}
           >
             Сохранить
-          </button>
+          </Button>
           {createTaskMutation.isError && (
             <div className="NewTaskForm-error">
               Не удалось создать заявку. Пожалуйста, попробуйте снова.

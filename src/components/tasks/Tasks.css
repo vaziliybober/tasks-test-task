@@ -102,21 +102,3 @@
   font-family: 'Ubuntu';
   color: #9f9ea7;
 }
-
-/* General */
-
-.button {
-  border: none;
-  border-radius: 2rem;
-  background: #008cf0;
-  color: #fff;
-  font-weight: lighter;
-}
-
-.button:hover {
-  filter: brightness(120%);
-}
-
-.button:disabled {
-  filter: brightness(70%);
-}
