@@ -9,10 +9,6 @@
   height: var(--header-height);
 }
 
-.Tasks-body {
-  display: flex;
-}
-
 .Tasks-body-left {
   height: calc(100vh - var(--header-height));
   overflow-y: auto;

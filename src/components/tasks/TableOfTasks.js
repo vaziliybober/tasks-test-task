@@ -1,5 +1,5 @@
 import React from 'react';
-import './TableOfTasks.css';
+import styled from '@emotion/styled';
 
 import _ from 'lodash';
 
@@ -9,10 +9,8 @@ import useTasksQuery from '../../hooks/useTasksQuery';
 import usePrioritiesQuery from '../../hooks/usePrioritiesQuery';
 import useStatusesQuery from '../../hooks/useStatusesQuery';
 
-export default function TableOfTasks({ shorten = false, onClick = () => {} }) {
+export default function TableOfTasks({ onClick = () => {} }) {
   const { data: tasks, status } = useTasksQuery();
-  const { data: statuses } = useStatusesQuery();
-  const { data: priorities } = usePrioritiesQuery();
 
   if (status === 'loading') {
     return <div>Загружаем заявки...</div>;
@@ -24,96 +22,150 @@ export default function TableOfTasks({ shorten = false, onClick = () => {} }) {
     );
   }
 
-  const shortHeadersJSX = (
-    <>
-      <th>
-        <div />
-      </th>
-      <th>
-        <div>ID</div>
-      </th>
-      <th>
-        <div>Название</div>
-      </th>
-    </>
-  );
-
-  const otherHeadersJSX = (
-    <>
-      <th>
-        <div>Статус</div>
-      </th>
-      <th>
-        <div>Исполнитель</div>
-      </th>
-    </>
-  );
-
-  const getShortColumnsJSX = (task) => {
-    const priorityRgb = _.find(
-      priorities,
-      (p) => p.id === task.priorityId
-    )?.rgb;
-
-    return (
-      <>
-        <td>
-          <div
-            className="TableOfTasks-priority"
-            style={{
-              background: priorityRgb,
-            }}
-          />
-        </td>
-        <td className="TableOfTasks-id">{formatId(task.id)}</td>
-        <td>
-          <div className="TableOfTasks-name">{task.name}</div>
-        </td>
-      </>
-    );
-  };
-
-  const getOtherColumnsJSX = (task) => {
-    const statusRgb = _.find(statuses, (p) => p.id === task.statusId)?.rgb;
-
-    return (
-      <>
-        <td>
-          <div
-            className="TableOfTasks-status"
-            style={{
-              background: statusRgb,
-              color: statusRgb && '#fff',
-            }}
-          >
-            {task.statusName}
-          </div>
-        </td>
-        <td>{task.executorName}</td>
-      </>
-    );
-  };
-
   return (
-    <div className="TableOfTasks">
-      <table>
-        <thead>
-          <tr>
-            {shortHeadersJSX}
-            {!shorten && otherHeadersJSX}
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task) => {
-            return (
-              <tr key={task.id} onClick={() => onClick(task.id)}>
-                {getShortColumnsJSX(task)}
-                {!shorten && getOtherColumnsJSX(task)}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    <Table>
+      <thead>
+        <TrHead>
+          {['', 'ID', 'Название', 'Статус', 'Исполнитель'].map((title) => (
+            <Th key={title}>
+              <ColumnTitle>{title}</ColumnTitle>
+            </Th>
+          ))}
+        </TrHead>
+      </thead>
+      <tbody>
+        {tasks.map((task) => (
+          <TaskRow task={task} onClick={() => onClick(task.id)} key={task.id} />
+        ))}
+      </tbody>
+    </Table>
   );
 }
+
+/* -------------------------------------- */
+
+const usePriority = (priorityId) => {
+  const { data: priorities } = usePrioritiesQuery();
+  return _.find(priorities, (p) => p.id === priorityId);
+};
+
+const useStatus = (statusId) => {
+  const { data: statuses } = useStatusesQuery();
+  return _.find(statuses, (p) => p.id === statusId);
+};
+
+function TaskRow({ task, onClick }) {
+  const { rgb: priorityRgb } = usePriority(task.priorityId) || {};
+  const { rgb: statusRgb } = useStatus(task.statusId) || {};
+
+  const columnsContent = [
+    <PriorityBar rgb={priorityRgb} />,
+    <TaskID>{formatId(task.id)}</TaskID>,
+    <TaskName>{task.name}</TaskName>,
+    <TaskStatus rgb={statusRgb}>{task.statusName}</TaskStatus>,
+    <ExecutorName>{task.executorName}</ExecutorName>,
+  ];
+
+  return (
+    <TrBody onClick={onClick}>
+      {columnsContent.map((colContent) => (
+        <Td>{colContent}</Td>
+      ))}
+    </TrBody>
+  );
+}
+
+/* -------------------------------------- */
+
+const Table = styled.table`
+  border-collapse: collapse;
+`;
+
+const Tr = styled.tr`
+  border-bottom: 1px solid #dae0e7;
+`;
+
+const TrHead = styled(Tr)`
+  text-align: left;
+`;
+
+const ColumnTitle = styled.div`
+  font-family: 'Ubuntu';
+  font-weight: normal;
+  color: #404147;
+`;
+
+const Th = styled.th`
+  padding-top: 3px;
+  padding-bottom: 6px;
+
+  &:first-child {
+    padding-right: 15px;
+  }
+
+  &:not(:first-child, :last-child) ${ColumnTitle} {
+    border-right: 1px solid #dae0e7;
+  }
+
+  &:not(:first-child) ${ColumnTitle} {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+`;
+
+const TrBody = styled(Tr)`
+  &:hover {
+    background: #999;
+    cursor: pointer;
+  }
+`;
+
+const Td = styled.td`
+  padding-top: 2px;
+  padding-bottom: 2px;
+
+  color: #525460;
+
+  &:not(:first-child) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+`;
+
+const PriorityBar = styled.div(({ rgb }) => ({
+  height: '50px',
+  width: '5px',
+
+  background: rgb,
+}));
+
+const TaskID = styled.div`
+  white-space: nowrap;
+`;
+
+const TaskName = styled.div`
+  max-width: 375px;
+  height: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 15px;
+  max-height: 30px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+`;
+
+const TaskStatus = styled.div`
+  display: inline;
+
+  background: ${({ rgb }) => rgb};
+  font-size: 12px;
+  text-transform: lowercase;
+  white-space: nowrap;
+  color: ${({ rgb }) => rgb && '#fff'};
+  padding: 3px 16px;
+  border-radius: 10px;
+`;
+
+const ExecutorName = styled.div``;
