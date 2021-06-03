@@ -1,7 +1,8 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import './Tasks.css';
 
-import Header from './Header';
+import UnstyledTasksHeader from './TasksHeader';
 import Button from '../shared/Button';
 import TableOfTasks from './TableOfTasks';
 import NewTaskForm from './NewTaskForm';
@@ -26,7 +27,7 @@ export default function Tasks() {
 
   return (
     <div className="Tasks">
-      <Header />
+      <TasksHeader />
       <div className="Tasks-body">
         <div className="Tasks-body-left">
           <Button
@@ -58,3 +59,7 @@ export default function Tasks() {
     </div>
   );
 }
+
+const TasksHeader = styled(UnstyledTasksHeader)`
+  height: 65px;
+`;
