@@ -42,6 +42,15 @@ export default function Sidebar({
   );
 }
 
+function NavItem({ section, active, onClick }) {
+  return (
+    <Li active={active} onClick={onClick}>
+      <img src={section.img} alt={section.alt} />
+      <div>{section.text}</div>
+    </Li>
+  );
+}
+
 const Container = styled.div`
   background: #002137;
 `;
@@ -62,15 +71,6 @@ const Ul = styled.ul`
   font-size: 12px;
   color: #fff;
 `;
-
-function NavItem({ section, active, onClick }) {
-  return (
-    <Li active={active} onClick={onClick}>
-      <img src={section.img} alt={section.alt} />
-      <div>{section.text}</div>
-    </Li>
-  );
-}
 
 const Li = styled.li(({ active }) => ({
   padding: '10px 0',
