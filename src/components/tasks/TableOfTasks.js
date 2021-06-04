@@ -144,7 +144,7 @@ const TaskID = styled.div`
 `;
 
 const TaskName = styled.div`
-  max-width: 375px;
+  width: 395px;
   height: 100%;
 
   overflow: hidden;
