@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 import UnstyledTasksHeader from './TasksHeader';
 import UnstyledButton from '../shared/Button';
 import TableOfTasks from './TableOfTasks';
-import NewTaskForm from './NewTaskForm';
-import EditTaskForm from './EditTaskForm';
+// import NewTaskForm from './NewTaskForm';
+// import EditTaskForm from './EditTaskForm';
 
 export default function Tasks() {
   return (

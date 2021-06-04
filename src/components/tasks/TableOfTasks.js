@@ -68,8 +68,8 @@ function TaskRow({ task, onClick }) {
 
   return (
     <TrBody onClick={onClick}>
-      {columnsContent.map((colContent) => (
-        <Td>{colContent}</Td>
+      {columnsContent.map((colContent, i) => (
+        <Td key={i}>{colContent}</Td>
       ))}
     </TrBody>
   );
@@ -99,15 +99,15 @@ const Th = styled.th`
   padding-top: 3px;
   padding-bottom: 6px;
 
-  &:first-child {
+  &:first-of-type {
     padding-right: 15px;
   }
 
-  &:not(:first-child, :last-child) ${ColumnTitle} {
+  &:not(:first-of-type, :last-child) ${ColumnTitle} {
     border-right: 1px solid #dae0e7;
   }
 
-  &:not(:first-child) ${ColumnTitle} {
+  &:not(:first-of-type) ${ColumnTitle} {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -126,7 +126,7 @@ const Td = styled.td`
 
   color: #525460;
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     padding-left: 15px;
     padding-right: 15px;
   }
