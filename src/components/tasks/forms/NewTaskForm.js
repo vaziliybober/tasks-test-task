@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import UnstyledFormHeader from './FormHeader';
+import FormHeader from './FormHeader';
 import FormField from './FormField';
 import FormTextarea from './FormTextarea';
 import UnstyledButton from '../../shared/Button';
@@ -60,8 +60,6 @@ export default function NewTaskForm({
 const Container = styled.div`
   min-width: 330px;
 `;
-
-const FormHeader = styled(UnstyledFormHeader)``;
 
 const FormBody = styled.div`
   padding: 60px 40px 25px 40px;

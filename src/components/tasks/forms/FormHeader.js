@@ -31,6 +31,7 @@ const Title = styled.div`
 `;
 
 const Description = styled.div`
+  min-width: 150px;
   max-width: 560px;
   margin-right: 10px;
 

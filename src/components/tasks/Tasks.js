@@ -22,7 +22,9 @@ export default function Tasks() {
         onClose={() => setMode('view')}
       />
     ),
-    edit: <EditTaskForm onClose={() => setMode('view')} />,
+    edit: (
+      <EditTaskForm taskId={selectedTaskId} onClose={() => setMode('view')} />
+    ),
   };
 
   const content = (
