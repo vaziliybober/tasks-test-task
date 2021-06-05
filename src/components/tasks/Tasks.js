@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 import UnstyledTasksHeader from './TasksHeader';
 import UnstyledButton from '../shared/Button';
 import TableOfTasks from './TableOfTasks';
-// import NewTaskForm from './NewTaskForm';
-// import EditTaskForm from './EditTaskForm';
+import NewTaskForm from './forms/NewTaskForm';
+import EditTaskForm from './forms/EditTaskForm';
 
 export default function Tasks() {
   const [mode, setMode] = React.useState('view');
@@ -13,8 +13,16 @@ export default function Tasks() {
 
   const forms = {
     view: null,
-    create: <div>new</div>,
-    edit: <div>{`edit ${selectedTaskId}`}</div>,
+    create: (
+      <NewTaskForm
+        onSuccess={(taskId) => {
+          setMode('edit');
+          setSelectedTaskId(taskId);
+        }}
+        onClose={() => setMode('view')}
+      />
+    ),
+    edit: <EditTaskForm onClose={() => setMode('view')} />,
   };
 
   const content = (
@@ -75,6 +83,7 @@ const FormContainer = styled.div`
   width: 975px;
 
   background: #ecf3f7;
+  border-left: 1px solid #d7dce0;
 `;
 
 const Button = styled(UnstyledButton)`
