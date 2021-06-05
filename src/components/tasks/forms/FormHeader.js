@@ -44,6 +44,9 @@ const Description = styled.div`
   max-height: 30px;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 `;
 
 const CloseImg = styled.img`

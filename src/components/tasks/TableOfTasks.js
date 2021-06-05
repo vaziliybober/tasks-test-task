@@ -154,6 +154,9 @@ const TaskName = styled.div`
   max-height: 30px;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 `;
 
 const TaskStatus = styled.div`

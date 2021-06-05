@@ -52,7 +52,7 @@ export default function EditTaskForm({ taskId, onClose = () => {} }) {
 
 const Container = styled.div`
   height: 100%;
-  min-width: 700px;
+  min-width: 740px;
 `;
 
 const FormBody = styled.div`
@@ -61,14 +61,16 @@ const FormBody = styled.div`
 `;
 
 const MainBlock = styled.div`
-  flex-grow: 1;
-
   //background: lightskyblue;
-  padding: 28px 40px;
+  padding: 28px 30px 20px 40px;
+  min-width: 500px;
+  max-width: calc(100% - 240px);
+  width: 45vw;
 `;
 
 const Sidebar = styled.div`
   width: 240px;
+  flex-shrink: 0;
 
   //background: lightseagreen;
   padding: 28px;
@@ -82,6 +84,10 @@ const TextBlock = styled.div`
 
 const DescriptionField = styled(FormField)`
   margin-bottom: 50px;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 `;
 
 const CommentAdder = styled(UnstyledCommentAdder)`
