@@ -8,6 +8,7 @@ import { formatId } from '../../shared';
 import useTasksQuery from '../../hooks/useTasksQuery';
 import usePrioritiesQuery from '../../hooks/usePrioritiesQuery';
 import useStatusesQuery from '../../hooks/useStatusesQuery';
+import useUsersQuery from '../../hooks/useUsersQuery';
 
 export default function TableOfTasks({ onClick = () => {} }) {
   const { data: tasks, status } = useTasksQuery();
@@ -54,16 +55,22 @@ const useStatus = (statusId) => {
   return _.find(statuses, (p) => p.id === statusId);
 };
 
+const useExecutor = (executorId) => {
+  const { data: executors } = useUsersQuery();
+  return _.find(executors, (p) => p.id === executorId);
+};
+
 function TaskRow({ task, onClick }) {
-  const { rgb: priorityRgb } = usePriority(task.priorityId) || {};
+  const priority = usePriority(task.priorityId) || {};
   const status = useStatus(task.statusId) || {};
+  const executor = useExecutor(task.executorId) || {};
 
   const columnsContent = [
-    <PriorityBar rgb={priorityRgb} />,
+    <PriorityBar rgb={priority.rgb} />,
     <TaskID>{formatId(task.id)}</TaskID>,
     <TaskName>{task.name}</TaskName>,
     <TaskStatus rgb={status.rgb}>{status.name || task.statusName}</TaskStatus>,
-    <ExecutorName>{task.executorName}</ExecutorName>,
+    <ExecutorName>{executor.name || task.executorName}</ExecutorName>,
   ];
 
   return (

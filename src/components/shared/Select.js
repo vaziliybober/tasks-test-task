@@ -8,14 +8,18 @@ const colourStyles = {
     border: 0,
     background: 'transparent',
     boxShadow: 'none',
+
+    marginLeft: '-8px',
   }),
+  option: (styles, state) =>
+    state.isSelected ? { ...styles, background: 'lightblue' } : styles,
   indicatorSeparator: (styles) => ({
     ...styles,
     marginLeft: '11px',
   }),
 };
 
-export default function Select({ value, options, onChange }) {
+export default function Select({ value, options, onChange, className }) {
   return (
     <ReactSelect
       value={options.filter((option) => option.value === value)}
@@ -23,6 +27,7 @@ export default function Select({ value, options, onChange }) {
       onChange={onChange}
       styles={colourStyles}
       isSearchable={false}
+      className={className}
     />
   );
 }

@@ -32,7 +32,12 @@ export default function StatusChanger({ task, className }) {
   };
 
   return (
-    <Select value={task.statusId} options={options} onChange={handleChange} />
+    <Select
+      value={task.statusId}
+      options={options}
+      onChange={handleChange}
+      className={className}
+    />
   );
 }
 
