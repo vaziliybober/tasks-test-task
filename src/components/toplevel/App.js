@@ -14,11 +14,15 @@ export default function App() {
   const tenantguidQuery = useTenantguidQuery();
 
   if (tenantguidQuery.isLoading) {
-    return 'Инициализируем приложение...';
+    return <Loading>Инициализируем приложение...</Loading>;
   }
 
   if (tenantguidQuery.isError) {
-    return 'Не удалось инициализировать приложение. Попробуйте обновить страницу.';
+    return (
+      <Error>
+        Не удалось инициализировать приложение. Попробуйте обновить страницу.
+      </Error>
+    );
   }
 
   return (
@@ -42,4 +46,15 @@ const Sidebar = styled(UnstyledSidebar)`
 
 const Main = styled(UnstyledMain)`
   margin-left: 95px;
+`;
+
+const Loading = styled.div`
+  margin-left: 20px;
+  margin-top: 10px;
+`;
+
+const Error = styled.div`
+  color: red;
+  margin-left: 20px;
+  margin-top: 10px;
 `;

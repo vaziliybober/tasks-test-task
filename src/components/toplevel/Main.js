@@ -4,10 +4,12 @@ import Tasks from '../tasks/Tasks';
 
 import usePrioritiesQuery from '../../hooks/usePrioritiesQuery';
 import useStatusesQuery from '../../hooks/useStatusesQuery';
+import useUsersQuery from '../../hooks/useUsersQuery';
 
 export default function Main({ currentSection, className }) {
   usePrioritiesQuery();
   useStatusesQuery();
+  useUsersQuery();
 
   const sections = {
     knowledgeBase: <h1>База знаний</h1>,

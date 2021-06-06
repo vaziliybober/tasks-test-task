@@ -20,11 +20,11 @@ export default function EditTaskForm({ taskId, onClose = () => {} }) {
   const { data: task, status } = useTaskQuery(taskId);
 
   if (status === 'loading') {
-    return 'Loading task...';
+    return <Loading>Loading task...</Loading>;
   }
 
   if (status === 'error') {
-    return "Couldn't load the task";
+    return <Error>Couldn't load the task</Error>;
   }
 
   const comments = task.lifetimeItems.filter((item) => item.comment);
@@ -185,4 +185,15 @@ const StatusChanger = styled(UnstyledStatusChanger)`
 
 const InitiatorField = styled(FormField)`
   margin-bottom: 55px;
+`;
+
+const Loading = styled.div`
+  margin-left: 20px;
+  margin-top: 10px;
+`;
+
+const Error = styled.div`
+  color: red;
+  margin-left: 20px;
+  margin-top: 10px;
 `;

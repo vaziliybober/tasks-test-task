@@ -52,6 +52,7 @@ export default function NewTaskForm({
         >
           Сохранить
         </Button>
+        {newTaskMutation.isError && <Error>Не удалось создать заявку</Error>}
       </FormBody>
     </Container>
   );
@@ -77,4 +78,9 @@ const DescriptionTextArea = styled(FormTextarea)`
 
 const Button = styled(UnstyledButton)`
   font-size: 14px;
+`;
+
+const Error = styled.span`
+  margin-left: 10px;
+  color: red;
 `;

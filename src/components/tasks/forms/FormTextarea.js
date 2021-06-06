@@ -5,6 +5,7 @@ const FormTextarea = styled.textarea`
   max-width: 625px;
   min-width: 250px;
 
+  font-size: 15px;
   resize: none;
   border-radius: 5px;
   border: 1px solid #e8e8e8;

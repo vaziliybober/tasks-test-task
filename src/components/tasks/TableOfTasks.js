@@ -14,12 +14,12 @@ export default function TableOfTasks({ onClick = () => {} }) {
   const { data: tasks, status } = useTasksQuery();
 
   if (status === 'loading') {
-    return <div>Загружаем заявки...</div>;
+    return <Loading>Загружаем заявки...</Loading>;
   }
 
   if (status === 'error') {
     return (
-      <div>Не удалось загрузить заявки. Попробуйте обновить страницу.</div>
+      <Error>Не удалось загрузить заявки. Попробуйте обновить страницу.</Error>
     );
   }
 
@@ -179,3 +179,14 @@ const TaskStatus = styled.div`
 `;
 
 const ExecutorName = styled.div``;
+
+const Loading = styled.div`
+  margin-left: 20px;
+  margin-top: 10px;
+`;
+
+const Error = styled.div`
+  color: red;
+  margin-left: 20px;
+  margin-top: 10px;
+`;

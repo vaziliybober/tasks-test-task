@@ -12,13 +12,19 @@ export default function CommentAdder({ task, className }) {
 
   const [commentValue, setCommentValue] = React.useState('');
 
+  React.useEffect(() => {
+    setCommentValue('');
+  }, [task.id]);
+
   const mutableData = {
     id: task.id,
     statusId: task.statusId,
     executorId: task.executorId,
   };
 
-  const handleSaveComment = () => {
+  const handleSaveComment = (e) => {
+    e.preventDefault();
+
     commentTaskMutation.mutate(
       { ...mutableData, comment: commentValue },
       {
@@ -30,7 +36,7 @@ export default function CommentAdder({ task, className }) {
   };
 
   return (
-    <form className={className}>
+    <form className={className} onSubmit={handleSaveComment}>
       <CommentField title="Добавление комментариев" required>
         <CommentTextArea
           value={commentValue}
@@ -38,11 +44,14 @@ export default function CommentAdder({ task, className }) {
         />
       </CommentField>
       <Button
-        onClick={handleSaveComment}
+        type="submit"
         disabled={commentTaskMutation.isLoading || !commentValue}
       >
         Сохранить
       </Button>
+      {commentTaskMutation.isError && (
+        <Error>Не удалось отправить комментарий</Error>
+      )}
     </form>
   );
 }
@@ -57,4 +66,9 @@ const CommentTextArea = styled(FormTextarea)`
 
 const Button = styled(UnstyledButton)`
   font-size: 14px;
+`;
+
+const Error = styled.span`
+  margin-left: 10px;
+  color: red;
 `;
