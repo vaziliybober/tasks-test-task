@@ -50,12 +50,16 @@ const Input = styled.input`
 
   font-size: 16px;
   font-weight: normal;
-  color: #a9b2c9;
+
   padding: 0 10px;
   border-width: 0;
 
   &:focus {
     outline: none;
+  }
+
+  &::placeholder {
+    color: #c0cbda;
   }
 `;
 

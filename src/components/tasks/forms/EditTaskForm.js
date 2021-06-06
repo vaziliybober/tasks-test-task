@@ -20,11 +20,11 @@ export default function EditTaskForm({ taskId, onClose = () => {} }) {
   const { data: task, status } = useTaskQuery(taskId);
 
   if (status === 'loading') {
-    return <Loading>Loading task...</Loading>;
+    return <Loading>Загружаем заявку...</Loading>;
   }
 
   if (status === 'error') {
-    return <Error>Couldn't load the task</Error>;
+    return <Error>Не удалось загрузить заявку.</Error>;
   }
 
   const comments = task.lifetimeItems.filter((item) => item.comment);
