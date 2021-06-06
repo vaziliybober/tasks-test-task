@@ -9,6 +9,7 @@ import FormHeader from './FormHeader';
 import FormField from './FormField';
 import Comments from './Comments';
 import UnstyledCommentAdder from './CommentAdder';
+import StatusChanger from './StatusChanger';
 
 import useTaskQuery from '../../../hooks/useTaskQuery';
 
@@ -44,7 +45,9 @@ export default function EditTaskForm({ taskId, onClose = () => {} }) {
           <CommentAdder task={task} />
           <Comments comments={comments} />
         </MainBlock>
-        <Sidebar>sidebar</Sidebar>
+        <Sidebar>
+          <StatusChanger task={task} />
+        </Sidebar>
       </FormBody>
     </Container>
   );

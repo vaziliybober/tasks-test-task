@@ -56,13 +56,13 @@ const useStatus = (statusId) => {
 
 function TaskRow({ task, onClick }) {
   const { rgb: priorityRgb } = usePriority(task.priorityId) || {};
-  const { rgb: statusRgb } = useStatus(task.statusId) || {};
+  const status = useStatus(task.statusId) || {};
 
   const columnsContent = [
     <PriorityBar rgb={priorityRgb} />,
     <TaskID>{formatId(task.id)}</TaskID>,
     <TaskName>{task.name}</TaskName>,
-    <TaskStatus rgb={statusRgb}>{task.statusName}</TaskStatus>,
+    <TaskStatus rgb={status.rgb}>{status.name || task.statusName}</TaskStatus>,
     <ExecutorName>{task.executorName}</ExecutorName>,
   ];
 
