@@ -45,7 +45,7 @@ export default function Sidebar({
 function NavItem({ section, active, onClick }) {
   return (
     <Li active={active} onClick={onClick}>
-      <img src={section.img} alt={section.alt} />
+      <SectionImage src={section.img} alt={section.alt} />
       <div>{section.text}</div>
     </Li>
   );
@@ -83,3 +83,5 @@ const Li = styled.li(({ active }) => ({
     cursor: 'pointer',
   },
 }));
+
+const SectionImage = styled.img``;
